@@ -1,0 +1,13 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  #calendar {
+    width: 80%;
+    margin: auto;
+  }
+  
+  #viewSelect {
+    margin-bottom: 20px;
+  }
+  
