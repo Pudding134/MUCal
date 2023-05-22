@@ -1,5 +1,5 @@
 :root {
-  --primary-clr: #101857;
+  --primary-clr: #08053f;
 }
 * {
   margin: 0;
@@ -32,7 +32,7 @@ body {
 .container {
   position: relative;
   width: 1200px;
-  min-height: 850px;
+  min-height: 1050px;
   margin: 0 auto;
   padding: 5px;
   color: #fff;
