@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
+
     <div class="btn-holder">
         <button class="theme" onclick="switchTheme()"> Switch Theme</button>
     </div>
@@ -93,21 +94,26 @@
             eventClick: function(info) {
 
                 let startDate = moment(info.event.start);
-                startDate = startDate.format('DD-MM-YYYY HHmm');
+                let formattedStartDate = startDate.format('DD-MM-YYYY HHmm');
+                let startHour = startDate.format('HH');
 
                 let endDate = moment(info.event.end);
-                endDate = endDate.format('DD-MM-YYYY HHmm');
+                let formattedEndDate = endDate.format('DD-MM-YYYY HHmm');
 
                 document.querySelector(".event-heading").innerHTML = info.event.title;
-                if(endDate === 'Invalid date')
+                if(formattedEndDate === 'Invalid date' && startHour !== '00')
                 {
-                  document.querySelector(".event-start").innerHTML = 'Full Day Event';  
-                  document.querySelector(".event-end").innerHTML = '';
+                  document.querySelector(".event-start").innerHTML = formattedStartDate;
+                  document.querySelector(".event-end").innerHTML = 'End of Day';
+                }
+                else if (formattedEndDate === 'Invalid date' && startHour === '00')
+                {
+                  document.querySelector(".event-start").innerHTML = 'Full day Event';
                 }
                 else
                 {
-                  document.querySelector(".event-start").innerHTML = startDate;
-                  document.querySelector(".event-end").innerHTML = endDate;
+                  document.querySelector(".event-start").innerHTML = formattedStartDate;
+                  document.querySelector(".event-end").innerHTML = formattedEndDate;
                 }
                 document.querySelector(".event-description").innerHTML = info.event.extendedProps.description;
             
