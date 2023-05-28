@@ -23,6 +23,20 @@ html, body {
     height: 100svh;
 }
 
+.logo {
+    top: 0;
+    left: 0;
+    position: relative; /* establish nearest positioned ancestor for child */
+}
+
+.logo img {
+    position: absolute; /* take the image out of document flow */
+    top: 0; /* align the top of the image with the top of the .logo container */
+    left: 0; /* align the left of the image with the left of the .logo container */
+    width: 80px;
+}
+
+
 #calendar {
     width: 70%;
     height: 100%;
