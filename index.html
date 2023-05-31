@@ -52,68 +52,68 @@
     
   }
   
-    document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function() {
       var initialTimeZone = 'UTC';
       var timeZoneSelectorEl = document.getElementById('time-zone-selector');
       var loadingEl = document.getElementById('loading');
       var calendarEl = document.getElementById('calendar');
       
       
-
+      
       var calendar = new FullCalendar.Calendar(calendarEl, {
             timeZone: initialTimeZone,
             initialView: 'dayGridMonth', //multiMonthYear
             editable: false,
             events:[
             {
-                id: 'AU-ev1',
-                title: 'Australia Graduation',
-                start: '2023-05-17',
-                color  : '#65688f',
-                extendedProps:{
-                    country: 'Australia'
+              id: 'AU-ev1',
+              title: 'Australia Graduation',
+              start: '2023-05-17',
+              color  : '#65688f',
+              extendedProps:{
+                country: 'Australia'
                 },
                 description: 'Australian Students Graduate Today!'
-            },
-            {
+              },
+              {
                 id: 'AU-ev2',
                 title: 'Australia Graduation Ceremony',
                 start: '2023-05-17 1800',
                 color  : '#65688f',
                 extendedProps:{
-                    country: 'Australia'
+                  country: 'Australia'
                 },
                 description: 'Australian Students Graduate Today!'
             },
             {
-                id: 'SG-ev2',
-                title: 'Singapore Graduation',
-                start: '2023-05-19 0200',
-                end: '2023-05-19 1000',
-                color  : '#3CB371',
-                extendedProps:{
-                    country: 'Singapore'
-                },
-                description: 'Singapore Students Graduate Today!'
+              id: 'SG-ev2',
+              title: 'Singapore Graduation',
+              start: '2023-05-19 0200',
+              end: '2023-05-19 1000',
+              color  : '#3CB371',
+              extendedProps:{
+                country: 'Singapore'
+              },
+              description: 'Singapore Students Graduate Today!'
             },            
             {
-                id: 'DB-ev2',
-                title: 'DuBai Graduation',
-                start: '2023-05-20 1800',
-                end: '2023-05-20 2200',
-                color  : '#b56107',
-                extendedProps:{
+              id: 'DB-ev2',
+              title: 'DuBai Graduation',
+              start: '2023-05-20 1800',
+              end: '2023-05-20 2200',
+              color  : '#b56107',
+              extendedProps:{
                     country: 'Dubai'
-                },
-                description: 'Dubai Students Graduate Today!'
-            }
-            ],
-            eventClick: function(info) {
-
+                  },
+                  description: 'Dubai Students Graduate Today!'
+                }
+              ],
+              eventClick: function(info) {
+                
                 let startDate = moment(info.event.start);
                 let formattedStartDate = startDate.format('DD-MM-YYYY HHmm');
                 let startHour = startDate.format('HH');
-
+                
                 let endDate = moment(info.event.end);
                 let formattedEndDate = endDate.format('DD-MM-YYYY HHmm');
 
@@ -127,6 +127,7 @@
                 else if (formattedEndDate === 'Invalid date' && startHour === '00')
                 {
                   document.querySelector(".event-start").innerHTML = 'Full day Event';
+                  document.querySelector(".event-end").innerHTML = '';
                 }
                 else
                 {
@@ -136,19 +137,29 @@
                 document.querySelector(".event-description").innerHTML = info.event.extendedProps.description;
                 
                 
-            }
+              }
             
+            });
+            
+            calendar.render();
+            calendar.setOption('timeZone', 'local');
+            
+            let zone_name =  moment.tz.guess();
+            let timezone = moment.tz(zone_name).zoneAbbr();
+            
+            
+            document.querySelector('.details').innerHTML = zone_name + ' GMT(' + timezone + ')';
+            window.addEventListener('resize', function()
+            {
+              if (window.innerWidth < 768)
+              {
+                calendar.changeView('listMonth');    
+              }
+              else
+              {
+                calendar.changeView('dayGridMonth');
+              }
+            })
     });
-
-    calendar.render();
-    calendar.setOption('timeZone', 'local');
-
-    let zone_name =  moment.tz.guess();
-      console.log(zone_name);
-      let timezone = moment.tz(zone_name).zoneAbbr();
-      
-      
-      document.querySelector('.details').innerHTML = zone_name + ' GMT(' + timezone + ')';
-    });
-</script>
+  </script>
 </html>
