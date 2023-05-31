@@ -199,8 +199,9 @@ body.login_page::before {
     padding: 10px 20px;
     text-align: center;
     border: none;
-    background: #000;
+    background: #082dcf;
     color: #fff;
     text-decoration: none;
     display: inline-block;
+    border-radius: 20px;
   }
