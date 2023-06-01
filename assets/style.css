@@ -190,12 +190,39 @@ body.login_page::before {
   }
   
   .login-box button {
-    padding: 10px 20px;
+    padding: 15px 32px;
     text-align: center;
     border: none;
     background: #082dcf;
     color: #fff;
     text-decoration: none;
     display: inline-block;
+    cursor: crosshair;
     border-radius: 20px;
+    width: 100%
   }
+
+  .login-box button:hover {
+    background-color: #45a049; 
+    color: white;
+  }
+
+  .back-btn {
+    padding: 15px 32px;
+    text-align: center;
+    border: none;
+    background-color: #4CAF50; 
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    cursor: crosshair;
+    border-radius: 20px;
+    width: 100%; 
+    margin-top: 10px;
+  }
+  
+  .back-btn:hover {
+    background-color: #45a049; 
+    color: white;
+  }
+  

@@ -27,7 +27,7 @@ CREATE TABLE `Categories` (
   `RegionName` varchar(50) NOT NULL,
   `ColorCode` varchar(7) NOT NULL,
   PRIMARY KEY (`RegionID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -62,7 +62,7 @@ CREATE TABLE `Events` (
   KEY `AmendedBy_ref` (`AmendedBy_ref`),
   CONSTRAINT `events_ibfk_1` FOREIGN KEY (`RegionID`) REFERENCES `Categories` (`RegionID`),
   CONSTRAINT `events_ibfk_2` FOREIGN KEY (`AmendedBy_ref`) REFERENCES `User` (`UserID`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,7 +90,7 @@ CREATE TABLE `User` (
   PRIMARY KEY (`UserID`),
   KEY `AccessRightsID` (`AccessRightsID`),
   CONSTRAINT `user_ibfk_1` FOREIGN KEY (`AccessRightsID`) REFERENCES `UserRights` (`AccessRightsID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -114,7 +114,7 @@ CREATE TABLE `UserRights` (
   `AccessRightsID` int NOT NULL AUTO_INCREMENT,
   `AccessName` varchar(50) NOT NULL,
   PRIMARY KEY (`AccessRightsID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
