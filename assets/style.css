@@ -182,6 +182,11 @@ body.login_page::before {
     border-bottom: 1px solid #000;
   }
 
+  .user-box input:hover{
+    cursor: crosshair;
+    color: red;
+  }
+
   .user-box select{
     width: 100%;
     padding: 10px 0;
