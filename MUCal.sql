@@ -62,7 +62,7 @@ CREATE TABLE `Events` (
   KEY `AmendedBy_ref` (`AmendedBy_ref`),
   CONSTRAINT `events_ibfk_1` FOREIGN KEY (`RegionID`) REFERENCES `Categories` (`RegionID`),
   CONSTRAINT `events_ibfk_2` FOREIGN KEY (`AmendedBy_ref`) REFERENCES `User` (`UserID`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,7 +71,6 @@ CREATE TABLE `Events` (
 
 LOCK TABLES `Events` WRITE;
 /*!40000 ALTER TABLE `Events` DISABLE KEYS */;
-INSERT INTO `Events` VALUES (1,'Graduation','2023-06-01','2023-06-01',NULL,NULL,'Australia Graduation today!','AU',2),(2,'Event 1','2023-06-02','2023-06-02','10:00:00',NULL,'Event description','AU',2),(3,'Event 2','2023-06-03','2023-06-03','14:00:00','16:00:00','Event description','AU',2),(4,'Graduation','2023-06-04','2023-06-04',NULL,NULL,'Singapore Graduation today!','SG',2),(5,'Event 1','2023-06-05','2023-06-05','10:00:00',NULL,'Event description','SG',2),(6,'Event 2','2023-06-06','2023-06-06','14:00:00','16:00:00','Event description','SG',2),(7,'Graduation','2023-06-07','2023-06-07',NULL,NULL,'Dubai Graduation today!','DB',2),(8,'Event 1','2023-06-08','2023-06-08','10:00:00',NULL,'Event description','DB',2),(9,'Event 2','2023-06-09','2023-06-09','14:00:00','16:00:00','Event description','DB',2);
 /*!40000 ALTER TABLE `Events` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,12 +84,13 @@ DROP TABLE IF EXISTS `User`;
 CREATE TABLE `User` (
   `UserID` int NOT NULL AUTO_INCREMENT,
   `UserName` varchar(255) NOT NULL,
+  `UserPassword` char(60) NOT NULL,
   `UserEmail` varchar(255) NOT NULL,
   `AccessRightsID` int NOT NULL,
   PRIMARY KEY (`UserID`),
   KEY `AccessRightsID` (`AccessRightsID`),
   CONSTRAINT `user_ibfk_1` FOREIGN KEY (`AccessRightsID`) REFERENCES `UserRights` (`AccessRightsID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +99,6 @@ CREATE TABLE `User` (
 
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
-INSERT INTO `User` VALUES (1,'Tharuka','tharuka@outlook.com',1),(2,'Willie','willie@outlook.com',1),(3,'Jas','jas@outlook.com',2),(4,'ZhengLong','zhenglong@outlook.com',3);
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -123,7 +122,7 @@ CREATE TABLE `UserRights` (
 
 LOCK TABLES `UserRights` WRITE;
 /*!40000 ALTER TABLE `UserRights` DISABLE KEYS */;
-INSERT INTO `UserRights` VALUES (1,'Administrator'),(2,'FacultyMember'),(3,'Student');
+INSERT INTO `UserRights` VALUES (1,'Administrator'),(2,'Faculty'),(3,'Student');
 /*!40000 ALTER TABLE `UserRights` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -136,4 +135,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-29  1:45:33
+-- Dump completed on 2023-06-01 23:41:39

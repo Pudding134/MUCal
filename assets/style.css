@@ -181,6 +181,23 @@ body.login_page::before {
     background: none;
     border-bottom: 1px solid #000;
   }
+
+  .user-box select{
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 30px;
+    border: none;
+    outline: none;
+    background: none;
+    border-bottom: 1px solid #000;
+  }
+
+  .user-box select:hover {
+    cursor: crosshair;
+    color: red;
+  }
   
   .login-box a {
     padding: 10px 20px;
@@ -226,3 +243,10 @@ body.login_page::before {
     color: white;
   }
   
+  body.account_create {
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
