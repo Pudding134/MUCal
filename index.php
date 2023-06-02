@@ -1,3 +1,8 @@
+<?php
+session_start();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,21 +10,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MUCal</title>
-    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
     <div class="header">
       <nav>
         <div class="logo">
-          <img src="Murdoch_logo(250x250).jpeg" alt="Murdoch_logo">
+          <img src="images/Murdoch_logo(250x250).jpeg" alt="Murdoch_logo">
         </div>
         <div class="details">
             
         </div>
         <ul>
           <li><a href="#">Murdoch Home</a></li>
-          <li><a href="login.html">Login</a></li>
+          
+          <?php
+          //check if user is login, if login, show log out with user name, else show login
+          if(isset($_SESSION['username'])) {
+              echo '<li><a href="logout.php">Logout (' . $_SESSION['username'] . ')</a></li>';
+          } else {
+              echo '<li><a href="login.html">Login</a></li>';
+          }
+          ?>
+
           <li><a href="#">About</a></li>
         </ul>
       </nav>
@@ -42,9 +56,9 @@
       <script>
         
       </script>
-<script src="/assets/fc.js"></script>
-<script src="/assets/moment.js"></script>
-<script src="/assets/moment-timezone.js"></script>
+<script src="assets/fc.js"></script>
+<script src="assets/moment.js"></script>
+<script src="assets/moment-timezone.js"></script>
 <script>
   
   function switchTheme()
