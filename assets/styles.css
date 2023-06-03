@@ -1,0 +1,129 @@
+
+:root
+{
+    --primary-color-cal: white;
+    --secondary-color-cal: black;
+    --list-calendar-hover-cal: #f8f8ff;
+}
+
+.dark-theme
+{
+    --primary-color-cal: black;
+    --secondary-color-cal: white;
+    --list-calendar-hover-cal:#222;
+}
+
+body
+{
+    background-color: var(--primary-color-cal);
+    color: var(--secondary-color-cal);
+}
+.fc-theme-standard .fc-list-day-cushion 
+{
+    background-color: var(--list-calendar-hover-cal);
+    color: var(--secondary-color-cal);
+}
+
+.navbar-collapse
+{
+    flex-grow: 0;
+}
+
+.navbar-nav
+{
+    text-align: end;
+}
+
+.navbar-nav .nav-item .nav-link, .fc-col-header-cell-cushion, .fc-daygrid-day-number,
+.fc-list-day-text, .fc-list-day-side-text
+{
+    color: var(--secondary-color-cal);
+    text-decoration: none;
+}
+.calendar-content
+{
+    margin-top: 35px;
+}
+
+#calendar
+{
+    height: 70svh;
+}
+
+.fc-daygrid-block-event .fc-event-time, .fc-daygrid-block-event .fc-event-title
+{
+    padding: 5px 0 5px 10px;
+    white-space: normal;
+}
+
+.expanded-view
+{
+    margin-top: 20px;
+    color: var(--secondary-color-cal);
+    height: 100%;
+    width: 100%;
+    padding: 0 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.expanded-details
+{
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+
+.fc-daygrid-day-events
+{
+    cursor: pointer;
+}
+
+.navbar-brand img
+{
+    max-height: 50px;
+    max-width: 180px;
+    height: 100%;
+    width: 100%;
+}
+
+.fc-daygrid-day-frame.fc-scrollgrid-sync-inner
+{
+    padding-bottom: 15px;
+}
+
+.theme-switcher
+{
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 15px;
+}
+
+.theme-switcher button
+{
+    background: var(--primary-color-cal);
+    color: var(--secondary-color-cal);
+    border: 1px solid var(--secondary-color-cal);
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+
+.theme-switcher button:hover
+{
+    background: var(--secondary-color-cal);
+    color: var(--primary-color-cal);
+}
+
+.fc .fc-list-event:hover td 
+{
+    background-color: var(--list-calendar-hover-cal) !important;
+}
+
+.container .form-group
+{
+    margin-bottom: 15px;
+}
+
+.calendar-event-title
+{
+    padding-top: 20px;
+}
