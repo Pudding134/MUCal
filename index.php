@@ -1,5 +1,5 @@
 <?php
-include 'header.php';
+    include 'header.php';
 ?>
     <div class="container calendar-content">
         <div id='calendar'></div>

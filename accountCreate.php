@@ -2,6 +2,7 @@
     session_start();
     include 'db_connection.php';
     include 'check-access-rights.php';
+    include 'header.php';
 ?>
 
 <?php 
@@ -18,6 +19,7 @@
             <link rel="stylesheet" href="assets/login.css">
         </head>
         <body class="account_create">
+          <div class="account_content">
             <div class="login-box">
               <h2>User Creation</h2>
               <form action="process_account_creation.php" method="post">
@@ -44,6 +46,7 @@
               </form>
               <button onclick="location.href='index.php'" class="back-btn">Back</button>
             </div>
+    </div>
 
             <script>
               var urlParams = new URLSearchParams(window.location.search);

@@ -9,11 +9,11 @@
     </div>
 </footer>
 
-<script src="/assets/bootstrap/bootstrap.js"></script>
-<script src="/assets/full_calendar/fc.js"></script>
-<script src="/assets/moment/moment.js"></script>
-<script src="/assets/moment_timezone/moment-timezone.js"></script>
-<script src="/assets/script.js"></script>
+<script src="assets/bootstrap/bootstrap.js"></script>
+<script src="assets/full_calendar/fc.js"></script>
+<script src="assets/moment/moment.js"></script>
+<script src="assets/moment_timezone/moment-timezone.js"></script>
+<script src="assets/script.js"></script>
 
 
 </body>

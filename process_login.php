@@ -24,10 +24,10 @@ if($user && password_verify($password, $user['UserPassword'])) {
     $_SESSION['username'] = $username;
     $_SESSION['accessRightsId'] = $user['AccessRightsID'];
 
-    header("Location: login.html?success=loginSuccess");
+    header("Location: login.php?success=loginSuccess");
     exit();
 } else {
-    header("Location: login.html?error=loginFailed");
+    header("Location: login.php?error=loginFailed");
     exit();
 }
 
