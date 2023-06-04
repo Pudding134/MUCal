@@ -1,7 +1,6 @@
 <?php
     include 'header.php';
 
-    // Fetching existing data from the database
     $sql = "SELECT * FROM User WHERE UserName = ?";
     $sqlStatement = $conn->prepare($sql);
     $sqlStatement->bind_param('s', $_SESSION['username']);
@@ -9,40 +8,25 @@
     $result = $sqlStatement->get_result();
     $user = $result->fetch_assoc();
 ?>
-
-<link rel="stylesheet" href="assets/login.css">
-
-
-
-<body class="login_page">
-    <div class="login_content">
-        <div class="login-box">
-            <h2>User Settings</h2>
+    <div class="container login-box col-md-3">
+            <h1 class="login-box-title">User Settings</h1>  
             <form action="process_user_setting.php" method="post">
-                <div class="user-box">
-                    <label for="username">User Name</label>
-                    <input type="text" id="username" name="username" value="<?php echo $user['UserName']; ?>" readonly>
-                </div>
-                <div class="user-box">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" value="<?php echo $user['UserEmail']; ?>" required>
-                </div>
-                <div class="user-box">
-                    <label for="password">Current Password</label>
-                    <input type="password" id="password" name="current_password" required>
-                </div>
-                <div class="user-box">
-                    <label for="password">New Password</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-
-                <button type="submit">
-                Update
-                </button>
+                <label for="username">Username</label>
+                <input type="text" class="form-control" name="username" id="username" value="<?php echo $user['UserName']; ?>"  disabled>
+            <br>
+                <label for="email">Email</label>
+                <input type="email" class="form-control" name="email" id="email" value="<?php echo $user['UserEmail']; ?>" required>
+            <br>
+                <label for="password">Current Password</label>
+                <input type="password" class="form-control" id="password" name="current_password" required>
+            <br>
+                <label for="password">New Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            <br>
+                <button type="submit" class="btn btn-primary" value="Submit">Update</button>
             </form>
-            <button onclick="location.href='index.php'" class="back-btn">Back</button>
-        </div>
     </div>
+
     <script>
         var urlParams = new URLSearchParams(window.location.search);
         if(urlParams.has('error')) {
@@ -51,13 +35,6 @@
             alert('Account update successful!');
         }
     </script>
-
-
-</body>
-
-<?php include 'footer.php'; ?>
-
-
 
 
 

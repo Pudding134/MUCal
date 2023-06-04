@@ -2,19 +2,7 @@
     session_start();
 
     include 'db_connection.php';
-    $accessRights = ''; 
-   
-    if (isset($_SESSION['username']))
-    {
-        $username = $_SESSION['username'];
-        $accessSql = "SELECT * FROM user WHERE username = '$username'";
-        $accessResult = $conn->query($accessSql);
-        
-        if ($accessResult->num_rows > 0) {
-            $accessRow = $accessResult->fetch_assoc();
-            $accessRights = strval($accessRow['AccessRightsID']);
-        }
-    }
+    include 'check-access-rights.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +18,7 @@
 <body>
     <nav class="navbar navbar-expand-md">
         <div class="container">
-            <a href="https://www.murdoch.edu.au/currentstudents#menu" class="navbar-brand">
+            <a href="/" class="navbar-brand">
                 <img src="assets/university_logo.png" alt="">
             </a>
             <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-label="Expand Navigation">
@@ -38,8 +26,6 @@
             </button>
             <div class="collapse navbar-collapse" id="nav">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="" class="nav-link">About</a></li>
                     <?php
                      if($accessRights == '1')
                      {
@@ -49,8 +35,7 @@
                     ?>
                     <?php
                         if(isset($_SESSION['username'])) {
-                            echo '<li class="nav-item"><a href="user_setting.php" class="nav-link">User Setting (' . $_SESSION['username'] . ')</a></li>';
-
+                            echo '<li class="nav-item"><a href="user_setting.php" class="nav-link">Account Settings</li>';
                             echo '<li class="nav-item"><a href="logout.php" class="nav-link">Logout (' . $_SESSION['username'] . ')</a></li>';
                         } else {
                             echo '<li class="nav-item"><a href="login.php" class="nav-link">Login</a></li>';
@@ -61,5 +46,8 @@
         </div>
     </nav>
     <div class="container theme-switcher">
-        <button class="theme-toggle">Switch Theme</button>
+        <button class="theme-toggle">
+            Switch Theme
+            <i class="button-svg"></i>
+        </button>
     </div>

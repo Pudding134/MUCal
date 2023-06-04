@@ -4,6 +4,7 @@
     --primary-color-cal: white;
     --secondary-color-cal: black;
     --list-calendar-hover-cal: #f8f8ff;
+    --icon-switcher: url('/assets/moon.svg');;
 }
 
 .dark-theme
@@ -11,6 +12,7 @@
     --primary-color-cal: black;
     --secondary-color-cal: white;
     --list-calendar-hover-cal:#222;
+    --icon-switcher: url('/assets/sun.svg');;
 }
 
 body
@@ -100,18 +102,39 @@ body
 
 .theme-switcher button
 {
-    background: var(--primary-color-cal);
-    color: var(--secondary-color-cal);
-    border: 1px solid var(--secondary-color-cal);
+    background: var(--secondary-color-cal);
+    color: var(--primary-color-cal);
+    border: 1px solid var(--primary-color-cal);
     padding: 10px 20px;
     border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.theme-switcher button .button-svg
+{
+    color: var(--primary-color-cal);
+    background-image: var(--icon-switcher);
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: right center;
+
+    padding-left: 25px;
+    height: 100%;
+    display: inline-block;
+    width: 20px;
+    position: relative;
 }
 
 .theme-switcher button:hover
 {
-    background: var(--secondary-color-cal);
-    color: var(--primary-color-cal);
+    background: var(--primary-color-cal);
+    color: var(--secondary-color-cal);
+    border: 1px solid var(--secondary-color-cal);
 }
+
 
 .fc .fc-list-event:hover td 
 {
@@ -123,7 +146,24 @@ body
     margin-bottom: 15px;
 }
 
-.calendar-event-title
+.calendar-event-title, .login-box-title
 {
     padding-top: 20px;
 }
+
+.user-login, .add-calendar-event, .login-box
+{
+    min-height: 65svh;
+}
+
+.user-login form
+{
+    margin: 50% 0;
+}
+
+.container .row
+{
+    display: flex;
+    justify-content: space-between;
+}
+
