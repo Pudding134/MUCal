@@ -4,7 +4,7 @@
     --primary-color-cal: white;
     --secondary-color-cal: black;
     --list-calendar-hover-cal: #f8f8ff;
-    --icon-switcher: url('/assets/moon.svg');;
+    --icon-switcher: url('moon.svg');;
 }
 
 .dark-theme
@@ -12,7 +12,7 @@
     --primary-color-cal: black;
     --secondary-color-cal: white;
     --list-calendar-hover-cal:#222;
-    --icon-switcher: url('/assets/sun.svg');;
+    --icon-switcher: url('sun.svg');;
 }
 
 body
