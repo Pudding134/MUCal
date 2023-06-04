@@ -5,6 +5,8 @@ const enableDarkMode = () => {
     document.body.classList.add('dark-theme');
     document.querySelector(".navbar").classList.add('navbar-dark');
     document.querySelector(".navbar").classList.add('bg-dark');
+    document.querySelector(".footer").classList.add('navbar-dark');
+    document.querySelector(".footer").classList.add('bg-dark');
 
     localStorage.setItem('darkMode', 'enabled');
 }
@@ -13,6 +15,8 @@ const disableDarkMode = () => {
     document.body.classList.remove('dark-theme');
     document.querySelector(".navbar").classList.remove('navbar-dark');
     document.querySelector(".navbar").classList.remove('bg-dark');
+    document.querySelector(".footer").classList.remove('navbar-dark');
+    document.querySelector(".footer").classList.remove('bg-dark');
 
     localStorage.setItem('darkMode', null);
 }

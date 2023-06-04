@@ -165,5 +165,11 @@ body
 {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap-reverse;
+}
+
+.footer
+{
+    padding-top: 25px;
 }
 
