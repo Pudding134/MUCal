@@ -17,7 +17,6 @@ const disableDarkMode = () => {
     document.querySelector(".navbar").classList.remove('bg-dark');
     document.querySelector(".footer").classList.remove('navbar-dark');
     document.querySelector(".footer").classList.remove('bg-dark');
-
     localStorage.setItem('darkMode', null);
 }
 

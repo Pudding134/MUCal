@@ -1,45 +1,38 @@
 <?php 
-    include 'header.php';
-    include 'db_connection.php';
-    include 'check-access-rights.php';
+  include 'header.php'; 
+    if (isset($_SESSION['message'])) {
+      $message = $_SESSION['message'];
+      $msg_type = $_SESSION['msg_type'];
+      echo "<div class='alert alert-{$msg_type}'>{$message}</div>";
+      unset($_SESSION['message']);
+      unset($_SESSION['msg_type']);
+  }
 ?>
 
-<?php 
-    if($accessRights == '1')
-    {
-       ?>
-        <div class="container add-calendar-event col-md-6">
-            <h1 class="calendar-event-title">Add a calendar event</h1>  
-            <form action="insert.php" method="post">
-                <label for="eventTitle">Event Title</label>
-                <input type="text" class="form-control" name="eventTitle" id="eventTitle" placeholder="Enter event title" required>
-            <br>
-                <label for="eventDescription">Event Description</label>
-                <textarea class="form-control" id="eventDescription" name="eventDescription" placeholder="Enter event description" rows="3" maxlength="254"></textarea>
-            <br>
-                <label for="eventDate">Event Date</label>
-                <input type="date" class="form-control"  name="eventDate" id="eventDate" placeholder="YYYY-MM-DD" required >
-            <br>
-                <label for="country">Country</label>
-                    <select class="form-control" id="country" name="country" required>
-                        <option>Australia</option>
-                        <option>Singapore</option>
-                        <option>Dubai</option>
-                    </select>
-            <br>
-                <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
-            </form>
-        </div>
-    <?php
-    }
-    else
-    {
-    ?>
-        <div class="not-allowed">not allowed</div>
-    <?php
-    }
-    ?>
+<div class="user-management-container" style="min-height: 64svh;">
+    <?php include 'sidebar.php' ?>
 
-<?php 
-include 'footer.php';
-?>
+    <div class="container main-content">
+    <?php
+        if (isset($_GET['page'])) {
+            $page = $_GET['page'];
+
+            $page_map = array(
+                "addCalEvent" => "addCalEvent.php",
+                "updateCalEvent" => "updateCalEvent.php",
+                "update" => "update.php"
+            );
+
+            if (array_key_exists($page, $page_map) && file_exists($page_map[$page])) {
+                include $page_map[$page];
+            } else {
+                header("Location: 404.php");
+            }
+        } else {
+            echo '<h1>Welcome to Calendar Management</h1>';
+            echo '<p>Select an option from the sidebar to get started.</p>';
+        }
+    ?>
+    </div>
+</div>
+<?php include 'footer.php'; ?>

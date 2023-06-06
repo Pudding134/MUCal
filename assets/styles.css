@@ -19,6 +19,7 @@ body
 {
     background-color: var(--primary-color-cal);
     color: var(--secondary-color-cal);
+    
 }
 .fc-theme-standard .fc-list-day-cushion 
 {
@@ -141,7 +142,7 @@ body
     background-color: var(--list-calendar-hover-cal) !important;
 }
 
-.container .form-group, .admin-back.btn
+.container .form-group, .admin-back.btn, .btn.btn-primary
 {
     margin-bottom: 15px;
 }
@@ -156,7 +157,7 @@ body
     min-height: 65svh;
 }
 
-.user-setting
+.user-setting, .add-calendar-event
 {
     min-height: 65svh;
     margin-left: 10%;
@@ -182,25 +183,22 @@ body
     padding-top: 25px;
 }
 
-.sidebar {
-    width: 200px; 
-    flex-shrink: 0;
-}
-
-.sidebar ul {
-    list-style-type: none;
-    padding: 12px;    
-}
-
-.sidebar ul li {
-    margin-bottom: 25px; 
-}
-
 .user-management-container {
     display: flex;
-    flex-direction: row;
 }
 
 .main-content {
     flex-grow: 1;
+}
+
+.list-group-item
+{
+    background-color: var(--list-calendar-hover-cal);
+    color: var(--secondary-color-cal);
+}
+
+.list-group-item:hover
+{
+    background-color: var(--secondary-color-cal);
+    color: var(--list-calendar-hover-cal);
 }

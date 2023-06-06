@@ -10,10 +10,10 @@
   }
 ?>
 
-<div class="user-management-container">
+<div class="user-management-container" style="min-height: 64svh;">
     <?php include 'sidebar.php' ?>
 
-    <div class="main-content">
+    <div class="container main-content">
     <?php
         if (isset($_GET['page'])) {
             $page = $_GET['page'];
@@ -23,13 +23,14 @@
                 "batchUserCreate" => "batchUserCreateContent.php", //not created
                 "singleUserEdit" => "single_user_edit.php",
                 "singleUserDelete" => "single_user_delete.php",
-                "batchUserDelete" => "batchUserDeleteContent.php" //not created
+                "batchUserDelete" => "batchUserDeleteContent.php", //not created
+                "addCalEvent" => "addCalEvent.php"
             );
 
             if (array_key_exists($page, $page_map) && file_exists($page_map[$page])) {
                 include $page_map[$page];
             } else {
-                echo "Invalid page selected.";
+                header("Location: 404.php");
             }
         } else {
             echo '<h1>Welcome to User Management</h1>';

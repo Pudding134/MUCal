@@ -1,6 +1,5 @@
 
 <?php 
-    session_start();
     include 'check-access-rights.php';
 
     if($accessRights == '1')
