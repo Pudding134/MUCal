@@ -232,3 +232,8 @@ body
     display: flex;
     flex-direction:column;
 }
+
+.height-control
+{
+    min-height: 85svh;
+}

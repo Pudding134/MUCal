@@ -16,6 +16,7 @@
     
 </head>
 <body>
+    <div class="height-control">
     <nav class="navbar navbar-expand-md">
         <div class="container">
             <a href="/" class="navbar-brand">

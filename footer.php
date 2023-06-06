@@ -1,3 +1,4 @@
+</div>
 <footer class="footer text-center text-lg-start">
 
   <section class="container">
