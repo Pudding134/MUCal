@@ -1,5 +1,12 @@
 <?php
     include 'header.php';
+    if (isset($_SESSION['message'])) {
+        $message = $_SESSION['message'];
+        $msg_type = $_SESSION['msg_type'];
+        echo "<div class='alert alert-{$msg_type}'>{$message}</div>";
+        unset($_SESSION['message']);
+        unset($_SESSION['msg_type']);
+    }
 
     $sql = "SELECT * FROM User WHERE UserName = ?";
     $sqlStatement = $conn->prepare($sql);
