@@ -1,5 +1,5 @@
 </div>
-<footer class="footer text-center text-lg-start">
+<footer class="footer text-center text-lg-start navbar-light bg-light">
 
   <section class="container">
     <div class="container">

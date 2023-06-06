@@ -17,7 +17,7 @@
 </head>
 <body>
     <div class="height-control">
-    <nav class="navbar navbar-expand-md">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
         <div class="container">
             <a href="/" class="navbar-brand">
                 <img src="assets/university_logo.png" alt="">
