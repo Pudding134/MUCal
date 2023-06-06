@@ -21,7 +21,7 @@
                 <input type="password" class="form-control" id="password" name="current_password" required>
             <br>
                 <label for="password">New Password</label>
-                <input type="password" class="form-control" id="password" name="password" required>
+                <input type="password" class="form-control" id="password" name="new_password" >
             <br>
                 <button type="submit" class="btn btn-primary" value="Submit">Update</button>
             </form>
@@ -30,12 +30,15 @@
     <script>
         var urlParams = new URLSearchParams(window.location.search);
         if(urlParams.has('error')) {
-            alert('Update Failed. Please check your credentials and try again.');
+            if(urlParams.get('error') === 'incorrectPassword') {
+                alert('Incorrect Current Password. Please check your credentials and try again.');
+            } else if(urlParams.get('error') === 'updateFailed') {
+                alert('User detail update Failed.');
+            }
         } else if(urlParams.has('success')) {
             alert('Account update successful!');
         }
     </script>
-
 
 
 <?php include 'footer.php'; ?>
