@@ -202,3 +202,33 @@ body
     background-color: var(--secondary-color-cal);
     color: var(--list-calendar-hover-cal);
 }
+
+.event-update-form
+{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 15px;
+    border: 1px solid var(--list-calendar-hover-cal);
+    padding: 5px 10px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    align-items: center;
+
+}
+
+.form-group .btn.btn-primary
+{
+    margin-bottom: 0;
+}
+
+.form-event-description
+{
+    max-width: 100svw;
+    width: 50%;
+}
+
+.event-update-button-submit
+{
+    display: flex;
+    flex-direction:column;
+}
