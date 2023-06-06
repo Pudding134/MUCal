@@ -4,7 +4,7 @@
     --primary-color-cal: white;
     --secondary-color-cal: black;
     --list-calendar-hover-cal: #f8f8ff;
-    --icon-switcher: url('moon.svg');;
+    --icon-switcher: url('moon.svg');
 }
 
 .dark-theme
@@ -12,7 +12,7 @@
     --primary-color-cal: black;
     --secondary-color-cal: white;
     --list-calendar-hover-cal:#222;
-    --icon-switcher: url('sun.svg');;
+    --icon-switcher: url('sun.svg');
 }
 
 body
@@ -156,6 +156,15 @@ body
     min-height: 65svh;
 }
 
+.user-setting
+{
+    min-height: 65svh;
+    margin-left: 10%;
+    margin-right: auto;
+    width: 60%;
+}
+
+
 .user-login form
 {
     margin: 50% 0;
@@ -173,3 +182,25 @@ body
     padding-top: 25px;
 }
 
+.sidebar {
+    width: 200px; 
+    flex-shrink: 0;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 12px;    
+}
+
+.sidebar ul li {
+    margin-bottom: 25px; 
+}
+
+.user-management-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.main-content {
+    flex-grow: 1;
+}
