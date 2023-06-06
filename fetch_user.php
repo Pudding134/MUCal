@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $user = null;
     if (isset($_GET['search_username']) || isset($_GET['search_email'])) {
         $searchUsername = isset($_GET['search_username']) ? $_GET['search_username'] : '';

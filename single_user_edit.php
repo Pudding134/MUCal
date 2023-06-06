@@ -46,6 +46,25 @@
             ?>
              </select>
             <br>
+
+            <label for="account-status">Account Status</label>
+            <select class="form-control" id="account-status" name="account-status" required>
+                <?php
+                $statusMap = [
+                    'active' => 'Active',
+                    'inactive' => 'Inactive'
+                ];
+
+                foreach($statusMap as $status => $displayName) {
+                    $selected = ($status == $user['AccountStatus']) ? 'selected' : '';
+                    echo "<option value='{$status}' {$selected}>{$displayName}</option>";
+                }
+                ?>
+            </select>
+            <br>
+
+
+
             <label for="password">New Password</label>
             <input type="password" class="form-control" id="password" name="password">
             <br>

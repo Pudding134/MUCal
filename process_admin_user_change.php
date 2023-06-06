@@ -8,24 +8,28 @@
         $email = $_POST['email'];
         $accessRights = $_POST['access-right'];
         $newPassword = $_POST['password'];
+        $accountStatus = $_POST['account-status'];
         $oldUsername = $_POST['old_username'];
         $oldEmail = $_POST['old_email'];
 
-        $sql = "UPDATE User SET UserName = ?, UserEmail = ?, AccessRightsID = ? WHERE UserName = ? AND UserEmail = ?";
+        $sql = "UPDATE User SET UserName = ?, UserEmail = ?, AccessRightsID = ?, AccountStatus = ?, UserAmendedBy_ref = ? WHERE UserName = ? AND UserEmail = ?";
 
         if (!empty($newPassword)) {
             $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-            $sql = "UPDATE User SET UserName = ?, UserEmail = ?, AccessRightsID = ?, UserPassword = ? WHERE UserName = ? AND UserEmail = ?";
+            $sql = "UPDATE User SET UserName = ?, UserEmail = ?, AccessRightsID = ?, UserPassword = ?, AccountStatus = ?, UserAmendedBy_ref = ? WHERE UserName = ? AND UserEmail = ?";
         }
 
         $sqlStatement = $conn->prepare($sql);
+        $userAmendedByRef = $_SESSION['userid'];
+
 
         if (!empty($newPassword)) {
-            $sqlStatement->bind_param('ssisss', $username, $email, $accessRights, $hashedPassword, $oldUsername, $oldEmail);
+            $sqlStatement->bind_param('ssississ', $username, $email, $accessRights, $hashedPassword, $accountStatus, $userAmendedByRef, $oldUsername, $oldEmail);
         } else {
-            $sqlStatement->bind_param('ssiss', $username, $email, $accessRights, $oldUsername, $oldEmail);
+            $sqlStatement->bind_param('ssisiss', $username, $email, $accessRights, $accountStatus, $userAmendedByRef, $oldUsername, $oldEmail);
         }
-
+        //echo $_SESSION['userid'];
+        //exit;
         if ($sqlStatement->execute()) {
             $_SESSION['message'] = "Successfully changed User details.";
             $_SESSION['msg_type'] = "success";
