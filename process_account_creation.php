@@ -1,57 +1,51 @@
 <?php
-// Include your database connection file here
-include 'db_connection.php';
-
-// Get data from the form
-$username = $_POST['username'];
-$password = $_POST['password'];
-$email = $_POST['email'];
-$accessRight = $_POST['access-right'];
-
-// Map the access right to the appropriate AccessRightsID
-$accessRightsMap = [
-    'admin' => 1,
-    'faculty' => 2,
-    'student' => 3
-];
-$accessRightId = $accessRightsMap[$accessRight];
+    session_start();
+    include 'db_connection.php';
 
 
-// Check if the username or email already exists
-$checkUserSql = "SELECT * FROM User WHERE UserName = ? OR UserEmail = ?";
-$checkStmt = $conn->prepare($checkUserSql);
-$checkStmt->bind_param('ss', $username, $email);
-$checkStmt->execute();
-$result = $checkStmt->get_result();
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $email = $_POST['email'];
+    $accessRight = $_POST['access-right'];
 
-if ($result->num_rows > 0) {
-    // Username or email exists, redirect back to account creation page with error
-    header('Location: accountCreate.php?error=userexists');
-    exit;
-}
+    $accessRightsMap = [
+        'admin' => 1,
+        'faculty' => 2,
+        'student' => 3
+    ];
+    $accessRightId = $accessRightsMap[$accessRight];
 
 
-// Perform password hashing
-$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    $checkUserSql = "SELECT * FROM User WHERE UserName = ? OR UserEmail = ?";
+    $checkStmt = $conn->prepare($checkUserSql);
+    $checkStmt->bind_param('ss', $username, $email);
+    $checkStmt->execute();
+    $result = $checkStmt->get_result();
 
-// Insert the data into the database
-$sql = "INSERT INTO User (UserName, UserPassword, UserEmail, AccessRightsID) 
-        VALUES (?, ?, ?, ?)";
+    if ($result->num_rows > 0) {
+        header('Location: accountCreate.php?error=userexists');
+        exit;
+    }
 
-//prepare SQL statement, help prevent SQL injection attacks
-$sqlStatement = $conn->prepare($sql);
 
-//bind parameters with variables (SSSI = string, string, string, integer)
-$sqlStatement->bind_param('sssi', $username, $hashedPassword, $email, $accessRightId);
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-//check if the statement was successful, if not, display error
-if ($sqlStatement->execute()) {
-    header("Location: accountCreate.php?success=accountcreated");
+    $sql = "INSERT INTO User (UserName, UserPassword, UserEmail, AccessRightsID) 
+            VALUES (?, ?, ?, ?)";
+
+    $sqlStatement = $conn->prepare($sql);
+
+    $sqlStatement->bind_param('sssi', $username, $hashedPassword, $email, $accessRightId);
+
+    if ($sqlStatement->execute()) {
+        $_SESSION['message'] = "User successfully created.";
+        $_SESSION['msg_type'] = "success";
+    } else {
+        $_SESSION['message'] = "There was an error creating the user.";
+        $_SESSION['msg_type'] = "danger";
+    }
+
+    $conn->close();
+    header("Location: userManagement.php?page=accountCreate");
     exit();
-} else {
-    header("Location: accountCreate.php?error=dberror");
-    exit();
-}
-
-$conn->close();
 ?>
