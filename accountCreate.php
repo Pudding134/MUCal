@@ -33,8 +33,7 @@
     else
     {
         ?>
-        <div class="b">not allowed</div>
-        
+        <div class="now-allowed">not allowed</div>
         <?php
     }
 ?>

@@ -141,7 +141,7 @@ body
     background-color: var(--list-calendar-hover-cal) !important;
 }
 
-.container .form-group
+.container .form-group, .admin-back.btn
 {
     margin-bottom: 15px;
 }
