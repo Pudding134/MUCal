@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.33, for macos13.3 (arm64)
 --
--- Host: localhost    Database: MUCal
+-- Host: localhost    Database: mucal
 -- ------------------------------------------------------
 -- Server version	8.0.33
 
@@ -41,13 +41,13 @@ INSERT INTO `Categories` VALUES ('AU','Australia','#65688f'),('DB','Dubai','#b56
 UNLOCK TABLES;
 
 --
--- Table structure for table `events`
+-- Table structure for table `Events`
 --
 
-DROP TABLE IF EXISTS `events`;
+DROP TABLE IF EXISTS `Events`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `events` (
+CREATE TABLE `Events` (
   `EventID` int NOT NULL AUTO_INCREMENT,
   `EventName` varchar(255) NOT NULL,
   `DateStart` date NOT NULL,
@@ -57,6 +57,7 @@ CREATE TABLE `events` (
   `description` blob,
   `RegionID` char(2) NOT NULL,
   `AmendedBy_ref` int DEFAULT NULL,
+  `EventAmendTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`EventID`),
   KEY `RegionID` (`RegionID`),
   KEY `AmendedBy_ref` (`AmendedBy_ref`),
@@ -66,12 +67,12 @@ CREATE TABLE `events` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `events`
+-- Dumping data for table `Events`
 --
 
-LOCK TABLES `events` WRITE;
-/*!40000 ALTER TABLE `events` DISABLE KEYS */;
-/*!40000 ALTER TABLE `events` ENABLE KEYS */;
+LOCK TABLES `Events` WRITE;
+/*!40000 ALTER TABLE `Events` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Events` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -87,9 +88,14 @@ CREATE TABLE `User` (
   `UserPassword` char(60) NOT NULL,
   `UserEmail` varchar(255) NOT NULL,
   `AccessRightsID` int NOT NULL,
+  `AccountStatus` enum('active','inactive') DEFAULT NULL,
+  `LastAmendTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `UserAmendedBy_ref` int DEFAULT NULL,
   PRIMARY KEY (`UserID`),
   KEY `AccessRightsID` (`AccessRightsID`),
-  CONSTRAINT `user_ibfk_1` FOREIGN KEY (`AccessRightsID`) REFERENCES `UserRights` (`AccessRightsID`)
+  KEY `UserAmendedBy_ref` (`UserAmendedBy_ref`),
+  CONSTRAINT `user_ibfk_1` FOREIGN KEY (`AccessRightsID`) REFERENCES `UserRights` (`AccessRightsID`),
+  CONSTRAINT `user_ibfk_2` FOREIGN KEY (`UserAmendedBy_ref`) REFERENCES `User` (`UserID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -135,4 +141,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-06 15:54:49
+-- Dump completed on 2023-06-07  1:29:58
