@@ -24,10 +24,6 @@
             <a href="userManagement.php?page=singleUserEdit" 
                 class="list-group-item list-group-item-action py-2 ripple">
                 <span>Single User Edit</span></a>
-            <a href="userManagement.php?page=singleUserDelete"
-                class="list-group-item list-group-item-action py-2 ripple">
-                <span>Single User Delete</span>
-            </a>
             <a href="userManagement.php?page=batchUserDelete" 
                 class="list-group-item list-group-item-action py-2 ripple">
                 <span>Batch User Delete</span>
