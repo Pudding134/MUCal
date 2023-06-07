@@ -16,7 +16,7 @@
     $accessRightId = $accessRightsMap[$accessRight];
 
 
-    $checkUserSql = "SELECT * FROM user WHERE UserName = ? OR UserEmail = ?";
+    $checkUserSql = "SELECT * FROM user WHERE user_name = ? OR user_email = ?";
     $checkStmt = $conn->prepare($checkUserSql);
     $checkStmt->bind_param('ss', $username, $email);
     $checkStmt->execute();
@@ -30,7 +30,7 @@
 
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO user (UserName, UserPassword, UserEmail, AccessRightsID) 
+    $sql = "INSERT INTO user (user_name, user_password, user_email, access_right_id) 
             VALUES (?, ?, ?, ?)";
 
     $sqlStatement = $conn->prepare($sql);

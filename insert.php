@@ -16,7 +16,7 @@
         $country = $_POST["country"];
 
         $countryID = $countryMap[$country];
-        $sql = "INSERT INTO events (EventName, DateStart, Description, RegionID) 
+        $sql = "INSERT INTO event (event_name, date_start, description, region_id) 
         VALUES ('$title', '$date', '$description', '$countryID')";
 
         $sqlStatement = $conn->prepare($sql);

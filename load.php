@@ -1,27 +1,27 @@
 <?php 
 include 'db_connection.php';
 
-$sql = "SELECT eventid, eventname, description, datestart, regionid FROM events";
+$sql = "SELECT event_id, event_name, description, date_start, region_id FROM event";
 $result = $conn->query($sql);
 $events = array();
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $regionId = $row['regionid'];
+        $regionId = $row['region_id'];
         $colorCode = ''; 
-        $regionSql = "SELECT colorcode FROM categories WHERE regionid = '$regionId'";
+        $regionSql = "SELECT color_code FROM region WHERE region_id = '$regionId'";
         $regionResult = $conn->query($regionSql);
         
         if ($regionResult->num_rows > 0) {
             $regionRow = $regionResult->fetch_assoc();
-            $colorCode = $regionRow['colorcode'];
+            $colorCode = $regionRow['color_code'];
         }
 
-        $start = date('Y-m-d', strtotime($row['datestart']));
+        $start = date('Y-m-d', strtotime($row['date_start']));
 
         $events[] = array(
-            'id' => $row['eventid'],
-            'title' => $row['eventname'],
+            'id' => $row['event_id'],
+            'title' => $row['event_name'],
             'start' => $start,
             'color' => $colorCode,
             'extendedProps' => array(

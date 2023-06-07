@@ -28,19 +28,19 @@
         ];
     ?>
         <form action="process_admin_user_change.php" method="post">
-            <input type="hidden" name="old_username" value="<?php echo $user['UserName']; ?>">
-            <input type="hidden" name="old_email" value="<?php echo $user['UserEmail']; ?>">
+            <input type="hidden" name="old_username" value="<?php echo $user['user_name']; ?>">
+            <input type="hidden" name="old_email" value="<?php echo $user['user_email']; ?>">
             <label for="username">Username</label>
-            <input type="text" class="form-control" name="username" id="username" value="<?php echo $user['UserName']; ?>" required >
+            <input type="text" class="form-control" name="username" id="username" value="<?php echo $user['user_name']; ?>" required >
             <br>
             <label for="email">Email</label>
-            <input type="email" class="form-control" name="email" id="email" value="<?php echo $user['UserEmail']; ?>" required>
+            <input type="email" class="form-control" name="email" id="email" value="<?php echo $user['user_email']; ?>" required>
             <br>
             <label for="access-right">User Access Rights</label>
             <select class="form-control" id="access-right" name="access-right" required>
             <?php
                 foreach($accessRightsMap as $id => $right) {
-                    $selected = ($id == $user['AccessRightsID']) ? 'selected' : '';
+                    $selected = ($id == $user['access_right_id']) ? 'selected' : '';
                     echo "<option value='{$id}' {$selected}>{$right}</option>";
                 }
             ?>
@@ -56,7 +56,7 @@
                 ];
 
                 foreach($statusMap as $status => $displayName) {
-                    $selected = ($status == $user['AccountStatus']) ? 'selected' : '';
+                    $selected = ($status == $user['account_status']) ? 'selected' : '';
                     echo "<option value='{$status}' {$selected}>{$displayName}</option>";
                 }
                 ?>

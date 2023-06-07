@@ -35,9 +35,9 @@
                      }
                     ?>
                     <?php
-                        if(isset($_SESSION['username'])) {
+                        if(isset($_SESSION['user_name'])) {
                             echo '<li class="nav-item"><a href="user_setting.php" class="nav-link">Account Settings</li>';
-                            echo '<li class="nav-item"><a href="logout.php" class="nav-link">Logout (' . $_SESSION['username'] . ')</a></li>';
+                            echo '<li class="nav-item"><a href="logout.php" class="nav-link">Logout (' . $_SESSION['user_name'] . ')</a></li>';
                         } else {
                             echo '<li class="nav-item"><a href="login.php" class="nav-link">Login</a></li>';
                         }

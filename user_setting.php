@@ -8,9 +8,9 @@
         unset($_SESSION['msg_type']);
     }
 
-    $sql = "SELECT * FROM user WHERE UserName = ?";
+    $sql = "SELECT * FROM user WHERE user_name = ?";
     $sqlStatement = $conn->prepare($sql);
-    $sqlStatement->bind_param('s', $_SESSION['username']);
+    $sqlStatement->bind_param('s', $_SESSION['user_name']);
     $sqlStatement->execute();
     $result = $sqlStatement->get_result();
     $user = $result->fetch_assoc();
@@ -19,10 +19,10 @@
             <h1 class="login-box-title">User Settings</h1>  
             <form action="process_user_setting.php" method="post">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" name="username" id="username" value="<?php echo $user['UserName']; ?>"  disabled>
+                <input type="text" class="form-control" name="username" id="username" value="<?php echo $user['user_name']; ?>"  disabled>
             <br>
                 <label for="email">Email</label>
-                <input type="email" class="form-control" name="email" id="email" value="<?php echo $user['UserEmail']; ?>" required>
+                <input type="email" class="form-control" name="email" id="email" value="<?php echo $user['user_email']; ?>" required>
             <br>
                 <label for="password">Current Password</label>
                 <input type="password" class="form-control" id="password" name="current_password" required>

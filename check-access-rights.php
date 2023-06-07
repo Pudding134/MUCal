@@ -8,11 +8,11 @@ include 'db_connection.php';
 
 $accessRights = 0; // assume 0 means no access
 
-if (isset($_SESSION['username'])) {
-    $username = $_SESSION['username'];
+if (isset($_SESSION['user_name'])) {
+    $username = $_SESSION['user_name'];
 
     // Prepare SQL statement
-    $accessSql = "SELECT * FROM user WHERE username = ?";
+    $accessSql = "SELECT * FROM user WHERE user_name = ?";
     $accessStmt = $conn->prepare($accessSql);
     $accessStmt->bind_param('s', $username);
     $accessStmt->execute();
@@ -20,7 +20,7 @@ if (isset($_SESSION['username'])) {
 
     if ($accessResult->num_rows > 0) {
         $accessRow = $accessResult->fetch_assoc();
-        $accessRights = (int)$accessRow['AccessRightsID'];
+        $accessRights = (int)$accessRow['access_right_id'];
     }
 }
 ?>

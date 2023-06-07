@@ -9,8 +9,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $eventRegion = $_POST["country"];
     $eventID = $_POST["eventID"];
 
-    $sql = "UPDATE events set EventName = '$eventName', description = '$eventDescription', DateStart = '$eventDate',
-    regionid = $eventRegion where EventID = '$eventID'";
+    $sql = "UPDATE event set event_name = '$eventName', description = '$eventDescription', date_start = '$eventDate',
+    region_id = $eventRegion where event_id = '$eventID'";
 
     $sqlStatement = $conn->prepare($sql);
 

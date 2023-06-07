@@ -4,7 +4,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dateStart = $_POST["eventStartDate"];
     $dateEnd = $_POST["eventEndDate"];
 
-    $sql = "SELECT eventid, eventname, description, datestart, regionid FROM events where datestart >= '$dateStart' and datestart <= '$dateEnd'";
+    $sql = "SELECT event_id, event_name, description, date_start, region_id FROM event where date_start >= '$dateStart' and date_start <= '$dateEnd'";
 
     $result = $conn->query($sql);
     $events = array();
@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         echo '<label for="eventID">ID</label>';
                     }
                     ?>
-                    <input type="text" class="form-control"  name="eventID" id="eventID" value="<?php echo $row["eventid"];?>">    
+                    <input type="text" class="form-control"  name="eventID" id="eventID" value="<?php echo $row["event_id"];?>">    
                 </div>
                 <div class="form-group">
                     <?php 
@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         echo '<label for="eventName">Title</label>';
                     }
                     ?>
-                    <input type="text" class="form-control"  name="eventName" id="eventName" value="<?php echo $row["eventname"];?>">    
+                    <input type="text" class="form-control"  name="eventName" id="eventName" value="<?php echo $row["event_name"];?>">    
                 </div>
                 <div class="form-group form-event-description">
                     <?php 
@@ -58,16 +58,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         echo '<label for="eventEndDate">Date</label>';
                     }
                     ?>
-                    <input type="date" class="form-control" name="eventDate" id="eventDate" value="<?php echo $row["datestart"];?>"  >  
+                    <input type="date" class="form-control" name="eventDate" id="eventDate" value="<?php echo $row["date_start"];?>"  >  
                 </div>
                 <?php 
 
-                $regionID = $row['regionid'];
+                $regionID = $row['region_id'];
                 
-                $allOtherRegionsSQL = "SELECT regionid from categories where regionID != '$regionID'";
+                $allOtherRegionsSQL = "SELECT region_id from region where region_id != '$regionID'";
                 $allOtherRegionsSQLResult = $conn->query($allOtherRegionsSQL);
 
-                $currentRegionSQL = "SELECT regionid from categories where regionID = '$regionID'";
+                $currentRegionSQL = "SELECT region_id from region where region_id = '$regionID'";
                 $currentRegionSQLResult = $conn->query($currentRegionSQL);
 
                 ?>
@@ -84,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             while($currentRegionSQLRow = $currentRegionSQLResult->fetch_assoc())
                             { 
                             ?>
-                            <option>"<?php echo $currentRegionSQLRow["regionid"];?>"</option>
+                            <option>"<?php echo $currentRegionSQLRow["region_id"];?>"</option>
                             <?php
                             }
                         ?>
@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             while($allOtherRegionsSQLRow = $allOtherRegionsSQLResult->fetch_assoc())
                             { 
                             ?>
-                            <option>"<?php echo $allOtherRegionsSQLRow["regionid"];?>"</option>
+                            <option>"<?php echo $allOtherRegionsSQLRow["region_id"];?>"</option>
                             <?php
                             }
                         ?>
