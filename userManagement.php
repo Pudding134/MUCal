@@ -23,7 +23,6 @@
                 "batchUserCreate" => "batchUserCreateContent.php", //not created
                 "singleUserEdit" => "single_user_edit.php",
                 "batchUserDelete" => "batchUserDeleteContent.php", //not created
-                "addCalEvent" => "addCalEvent.php"
             );
 
             if (array_key_exists($page, $page_map) && file_exists($page_map[$page])) {
