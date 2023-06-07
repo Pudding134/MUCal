@@ -97,7 +97,7 @@ CREATE TABLE `user` (
   KEY `amended_by_ref` (`amended_by_ref`),
   CONSTRAINT `user_ibfk_1` FOREIGN KEY (`access_right_id`) REFERENCES `user_right` (`access_right_id`),
   CONSTRAINT `user_ibfk_2` FOREIGN KEY (`amended_by_ref`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -106,6 +106,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'willie','$2y$10$fTxSxvDVhdneV6yCJZ3PYugYXxOLaRiTCv0yzQPCnspa4hhAtpRlq','willie@murdoch.com',1,'active','2023-06-07 05:36:13',NULL),(2,'tharuka','$2y$10$fTxSxvDVhdneV6yCJZ3PYugYXxOLaRiTCv0yzQPCnspa4hhAtpRlq','tharuka@murdoch.com',1,'active','2023-06-07 05:36:13',NULL),(3,'admin','$2y$10$fTxSxvDVhdneV6yCJZ3PYugYXxOLaRiTCv0yzQPCnspa4hhAtpRlq','admin@murdoch.com',1,'active','2023-06-07 05:36:13',NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,4 +143,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-07 12:51:17
+-- Dump completed on 2023-06-07 13:36:44
