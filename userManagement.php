@@ -22,7 +22,6 @@
                 "accountCreate" => "accountCreate.php",
                 "batchUserCreate" => "batchUserCreateContent.php", //not created
                 "singleUserEdit" => "single_user_edit.php",
-                "singleUserDelete" => "single_user_delete.php",
                 "batchUserDelete" => "batchUserDeleteContent.php", //not created
                 "addCalEvent" => "addCalEvent.php"
             );

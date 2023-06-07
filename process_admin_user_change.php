@@ -28,8 +28,7 @@
         } else {
             $sqlStatement->bind_param('ssisiss', $username, $email, $accessRights, $accountStatus, $userAmendedByRef, $oldUsername, $oldEmail);
         }
-        //echo $_SESSION['userid'];
-        //exit;
+
         if ($sqlStatement->execute()) {
             $_SESSION['message'] = "Successfully changed User details.";
             $_SESSION['msg_type'] = "success";
