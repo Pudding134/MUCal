@@ -6,7 +6,7 @@
     $current_password=$_POST['current_password'];
     $new_password=$_POST['new_password'];
 
-    $sql = "SELECT * FROM User WHERE UserName = ?";
+    $sql = "SELECT * FROM user WHERE UserName = ?";
     $sqlStatement = $conn->prepare($sql);
     $sqlStatement->bind_param('s', $_SESSION['username']);
     $sqlStatement->execute();
@@ -18,13 +18,13 @@
 
         if (!empty($new_password)) {
             $new_password_hashed = password_hash($new_password, PASSWORD_DEFAULT);
-            $sql = "UPDATE User SET UserEmail = ?, UserPassword = ? WHERE UserName = ?";
+            $sql = "UPDATE user SET UserEmail = ?, UserPassword = ? WHERE UserName = ?";
             $sqlStatement = $conn->prepare($sql);
             $sqlStatement->bind_param('sss', $email, $new_password_hashed, $_SESSION['username']);
             $sqlStatement->execute();
         }
         else{
-            $sql = "UPDATE User SET UserEmail = ? WHERE UserName = ?";
+            $sql = "UPDATE user SET UserEmail = ? WHERE UserName = ?";
             $sqlStatement = $conn->prepare($sql);
             $sqlStatement->bind_param('ss', $email, $_SESSION['username']);
             $sqlStatement->execute();

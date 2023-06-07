@@ -12,11 +12,11 @@
         $oldUsername = $_POST['old_username'];
         $oldEmail = $_POST['old_email'];
 
-        $sql = "UPDATE User SET UserName = ?, UserEmail = ?, AccessRightsID = ?, AccountStatus = ?, UserAmendedBy_ref = ? WHERE UserName = ? AND UserEmail = ?";
+        $sql = "UPDATE user SET UserName = ?, UserEmail = ?, AccessRightsID = ?, AccountStatus = ?, UserAmendedBy_ref = ? WHERE UserName = ? AND UserEmail = ?";
 
         if (!empty($newPassword)) {
             $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-            $sql = "UPDATE User SET UserName = ?, UserEmail = ?, AccessRightsID = ?, UserPassword = ?, AccountStatus = ?, UserAmendedBy_ref = ? WHERE UserName = ? AND UserEmail = ?";
+            $sql = "UPDATE user SET UserName = ?, UserEmail = ?, AccessRightsID = ?, UserPassword = ?, AccountStatus = ?, UserAmendedBy_ref = ? WHERE UserName = ? AND UserEmail = ?";
         }
 
         $sqlStatement = $conn->prepare($sql);

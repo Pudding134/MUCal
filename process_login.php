@@ -5,7 +5,7 @@ include 'db_connection.php';
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-$sql = "SELECT * FROM User WHERE UserName = ?";
+$sql = "SELECT * FROM user WHERE UserName = ?";
 $sqlStatement = $conn->prepare($sql);
 $sqlStatement->bind_param('s', $username);
 $sqlStatement->execute();

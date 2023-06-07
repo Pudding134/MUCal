@@ -5,7 +5,7 @@
         $searchUsername = isset($_GET['search_username']) ? $_GET['search_username'] : '';
         $searchEmail = isset($_GET['search_email']) ? $_GET['search_email'] : '';
 
-        $sql = "SELECT * FROM User WHERE UserName = ? OR UserEmail = ?";
+        $sql = "SELECT * FROM user WHERE UserName = ? OR UserEmail = ?";
         $sqlStatement = $conn->prepare($sql);
         $sqlStatement->bind_param('ss', $searchUsername, $searchEmail);
         $sqlStatement->execute();

@@ -8,7 +8,7 @@
         unset($_SESSION['msg_type']);
     }
 
-    $sql = "SELECT * FROM User WHERE UserName = ?";
+    $sql = "SELECT * FROM user WHERE UserName = ?";
     $sqlStatement = $conn->prepare($sql);
     $sqlStatement->bind_param('s', $_SESSION['username']);
     $sqlStatement->execute();
