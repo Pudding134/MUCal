@@ -1,16 +1,14 @@
 <?php 
-if (isset($_SESSION['message'])) {
-    $message = $_SESSION['message'];
-    $msg_type = $_SESSION['msg_type'];
-    echo "<div class='alert alert-{$msg_type}'>{$message}</div>";
-    unset($_SESSION['message']);
-    unset($_SESSION['msg_type']);
-}
+    
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dateStart = $_POST["eventStartDate"];
     $dateEnd = $_POST["eventEndDate"];
     $region = $_POST["country"];
+    $msgType = $_POST["messageType"];
+    $message = $_POST["message"];
+
+    echo "<div class='alert alert-{$msgType}'>{$message}</div>";
 
     $sql = "";
 

@@ -27,6 +27,14 @@
                             <option>DB</option>
                         </select>
                     </div>
+                    <div class="form-group" style="display: none;">
+                        <label for="messageType">Message Type</label>
+                        <input type="text" class="form-control"  name="messageType" id="messageType">  
+                    </div>
+                    <div class="form-group" style="display: none;">
+                        <label for="message">Message</label>
+                        <input type="text" class="form-control"  name="message" id="message">  
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary" id="update-submit" value="Submit">Find</button>
             </form>
@@ -37,11 +45,15 @@
             const startDate = urlParams.get('eventStartDate');
             const endDate = urlParams.get('eventEndDate');
             const country = urlParams.get('country');  
+            const messageType = urlParams.get('messageType');
+            const message = urlParams.get('message');    
 
             if (startDate && endDate && country) {
                 document.getElementById('eventStartDate').value = startDate;
                 document.getElementById('eventEndDate').value = endDate;
                 document.getElementById('country').value = country;
+                document.getElementById('messageType').value = messageType;
+                document.getElementById('message').value = message;
 
                 let button = document.getElementById('update-submit');
                 button.click();

@@ -49,7 +49,7 @@
                         </a>
                         <a href="admin_panel.php?page=addBulkCalEvent" 
                             class="list-group-item list-group-item-action py-2 ripple">
-                        <span>Bulk Upload Calendar Events</span>
+                        <span>Batch Calendar Events</span>
                         </a>
                     </div>
                 </div>

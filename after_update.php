@@ -19,14 +19,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sqlStatement = $conn->prepare($sql);
 
     if ($sqlStatement->execute()) {
-        $_SESSION['message'] = "Successfully changed event details.";
-        $_SESSION['msg_type'] = "success";
+        $message = "Successfully changed event details.";
+        $msgType = "success";
     } else {
-        $_SESSION['message'] = "There was an error changing event details.";
-        $_SESSION['msg_type'] = "danger";
+        $message = "Error Changing the details";
+        $msgType = "danger";
     }
     $conn->close();
-    header("Location: admin_panel.php?page=updateCalEvent&eventStartDate=$urlStartDate&eventEndDate=$urlEndDate&country=$urlRegion");
+    header("Location: admin_panel.php?page=updateCalEvent&eventStartDate=$urlStartDate&eventEndDate=$urlEndDate&country=$urlRegion&message=$message&messageType=$msgType");
     exit();
 }
 

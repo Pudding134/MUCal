@@ -1,13 +1,10 @@
 <?php
+
+include 'db_connection.php';
+
 try {
     if ($_FILES['fileToUpload']['error'] > 0) { 
         throw new Exception('File upload failed. Error Code: ' . $_FILES['fileToUpload']['error']);
-    }
-
-    $dbh = new mysqli('localhost', 'root', '', 'MUCal');
-    
-    if ($dbh->connect_error) {
-        throw new Exception("Connection failed: " . $dbh->connect_error);
     }
 
     $file = $_FILES['fileToUpload']['tmp_name']; // Get temporary name of the uploaded file
@@ -26,14 +23,14 @@ try {
         $access_right_id = $data[3];
         $account_status = $data[4];
 
-        $stmt = $dbh->prepare("INSERT INTO user (user_name, user_password, user_email, access_right_id, account_status) VALUES (?, ?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO user (user_name, user_password, user_email, access_right_id, account_status) VALUES (?, ?, ?, ?, ?)");
         $stmt->bind_param("sssss", $user_name, $user_password, $user_email, $access_right_id, $account_status);
         $stmt->execute();
     }
 
     fclose($handle);
     $stmt->close();
-    $dbh->close();
+    $conn->close();
 
     header('Location: userManagement.php?page=batchUserCreate');// Redirect back to the upload page
     exit();
