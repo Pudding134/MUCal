@@ -11,18 +11,31 @@ $sqlStatement->bind_param('s', $username);
 $sqlStatement->execute();
 $result = $sqlStatement->get_result();
 $user = $result->fetch_assoc();
+$isAccountDeactivated = $user['account_status'];
+$verifyPassword = password_verify($password, $user['user_password']);
 
-if($user && password_verify($password, $user['user_password'])) {
-    $_SESSION['user_name'] = $username;
-    $_SESSION['access_right_id'] = $user['access_right_id'];
-    $_SESSION['user_id'] = $user['user_id'];
-
-    header("Location: login.php?success=loginSuccess");
-    exit();
-} else {
-    header("Location: login.php?error=loginFailed");
-    exit();
+if ($isAccountDeactivated == 'active')
+{
+    if($user && $verifyPassword) {
+        $_SESSION['user_name'] = $username;
+        $_SESSION['access_right_id'] = $user['access_right_id'];
+        $_SESSION['user_id'] = $user['user_id'];
+    
+        header("Location: login.php?success=loginSuccess");
+        exit();
+    } else {
+        header("Location: login.php?error=loginFailed");
+        $conn->close();
+        exit();
+    }
+}
+else
+{
+    header("Location: login.php?error=deactivated");
+    $conn->close();
+    exit(); 
 }
 
-$conn->close();
+
+
 ?>

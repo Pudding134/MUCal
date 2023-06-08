@@ -18,12 +18,12 @@
                 class="list-group-item list-group-item-action py-2 ripple">
                <span>Single User Creation</span>
             </a>
+            <a href="userManagement.php?page=singleUserEdit" 
+            class="list-group-item list-group-item-action py-2 ripple">
+            <span>Single User Edit</span></a>
             <a href="userManagement.php?page=batchUserCreate"
                 class="list-group-item list-group-item-action py-2 ripple">
                 <span>Batch User Creation</span></a>
-            <a href="userManagement.php?page=singleUserEdit" 
-                class="list-group-item list-group-item-action py-2 ripple">
-                <span>Single User Edit</span></a>
             <a href="userManagement.php?page=batchUserDelete" 
                 class="list-group-item list-group-item-action py-2 ripple">
                 <span>Batch User Delete</span>
@@ -46,10 +46,6 @@
                         <a href="admin_panel.php?page=updateCalEvent" 
                             class="list-group-item list-group-item-action py-2 ripple">
                         <span>Update Calendar Events</span>
-                        </a>
-                        <a href="admin_panel.php?page=deleteCalEvent" 
-                            class="list-group-item list-group-item-action py-2 ripple">
-                        <span>Delete Calendar Events</span>
                         </a>
                         <a href="admin_panel.php?page=addBulkCalEvent" 
                             class="list-group-item list-group-item-action py-2 ripple">

@@ -1,10 +1,27 @@
 <?php 
+if (isset($_SESSION['message'])) {
+    $message = $_SESSION['message'];
+    $msg_type = $_SESSION['msg_type'];
+    echo "<div class='alert alert-{$msg_type}'>{$message}</div>";
+    unset($_SESSION['message']);
+    unset($_SESSION['msg_type']);
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dateStart = $_POST["eventStartDate"];
     $dateEnd = $_POST["eventEndDate"];
+    $region = $_POST["country"];
 
-    $sql = "SELECT event_id, event_name, description, date_start, region_id FROM event where date_start >= '$dateStart' and date_start <= '$dateEnd'";
+    $sql = "";
+
+    if($region == 'All')
+    {
+        $sql = "SELECT event_id, event_name, description, date_start, region_id, event_status FROM event where date_start >= '$dateStart' and date_start <= '$dateEnd'";
+    }
+    else
+    {
+        $sql = "SELECT event_id, event_name, description, date_start, region_id, event_status FROM event where date_start >= '$dateStart' and date_start <= '$dateEnd' and region_id = '$region'";
+    }
 
     $result = $conn->query($sql);
     $events = array();
@@ -23,13 +40,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="col-md-12 event-update-form">
 
                 <div class="form-group" style="display: none;">
-                    <?php 
-                    if ($counter == 0) 
-                    {
-                        echo '<label for="eventID">ID</label>';
-                    }
-                    ?>
-                    <input type="text" class="form-control"  name="eventID" id="eventID" value="<?php echo $row["event_id"];?>">    
+                    <input type="text" class="form-control"  name="eventID" id="eventID" value="<?php echo $row["event_id"];?>">
+                    <input type="text" class="form-control"  name="eventStartDate" id="eventStartDate" value="<?php echo $dateStart;?>">
+                    <input type="text" class="form-control"  name="eventEndDate" id="eventEndDate" value="<?php echo $dateEnd;?>">
+                    <input type="text" class="form-control"  name="selectedRegion" id="selectedRegion" value="<?php echo $region;?>">    
                 </div>
                 <div class="form-group">
                     <?php 
@@ -71,33 +85,62 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $currentRegionSQLResult = $conn->query($currentRegionSQL);
 
                 ?>
-                    <div class="form-group">
-                        
-                        <?php 
-                        if ($counter == 0) 
-                        {
-                            echo '<label for="country">Country</label>';
+                <div class="form-group" style="width: 55px;">
+                    
+                    <?php 
+                    if ($counter == 0) 
+                    {
+                        echo '<label for="country">Country</label>';
+                    }
+                    ?>
+                    <select id="country" class="form-control" name="country" required>
+                    <?php 
+                        while($currentRegionSQLRow = $currentRegionSQLResult->fetch_assoc())
+                        { 
+                        ?>
+                        <option><?php echo $currentRegionSQLRow["region_id"];?></option>
+                        <?php
                         }
+                    ?>
+                    <?php 
+                        while($allOtherRegionsSQLRow = $allOtherRegionsSQLResult->fetch_assoc())
+                        { 
                         ?>
-                        <select id="country" class="form-control" name="country" required>
-                        <?php 
-                            while($currentRegionSQLRow = $currentRegionSQLResult->fetch_assoc())
-                            { 
-                            ?>
-                            <option>"<?php echo $currentRegionSQLRow["region_id"];?>"</option>
-                            <?php
-                            }
-                        ?>
-                        <?php 
-                            while($allOtherRegionsSQLRow = $allOtherRegionsSQLResult->fetch_assoc())
-                            { 
-                            ?>
-                            <option>"<?php echo $allOtherRegionsSQLRow["region_id"];?>"</option>
-                            <?php
-                            }
-                        ?>
-                        </select>
-                    </div>
+                        <option><?php echo $allOtherRegionsSQLRow["region_id"];?></option>
+                        <?php
+                        }
+                    ?>
+                    </select>
+                </div>
+
+                <?php
+
+                $currentEventStatus = $row['event_status'];
+                $theOtherEventStatus = "";
+                
+                if ($currentEventStatus == 'active')
+                {
+                    $theOtherEventStatus = 'inactive';
+                }
+                else
+                {
+                    $theOtherEventStatus = "active";
+                }
+
+                ?>
+                <div class="form-group">
+                    
+                    <?php 
+                    if ($counter == 0) 
+                    {
+                        echo '<label for="event-status">Status</label>';
+                    }
+                    ?>
+                    <select id="event-status" class="form-control" name="event-status" required>
+                        <option><?php echo $currentEventStatus;?></option>
+                        <option><?php echo $theOtherEventStatus;?></option>
+                    </select>
+                </div>
                 <div class="form-group event-update-button-submit">
                     <?php 
                     if ($counter == 0) 
@@ -115,6 +158,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $counter++;
         }
     
+    }
+    else
+    {
+        echo 'No Events Found';
     }
     echo '<br>
     <br>';

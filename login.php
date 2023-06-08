@@ -16,12 +16,21 @@
 
     <script>
       var urlParams = new URLSearchParams(window.location.search);
-      if(urlParams.has('error')) {
-        if(urlParams.get('error') === 'loginFailed') {
+      if(urlParams.has('error')) 
+      {
+        if(urlParams.get('error') === 'loginFailed') 
+        {
           alert('Login Failed. Please check your credentials and try again.');
-          }
-        } else if(urlParams.has('success')) {
-        if(urlParams.get('success') === 'loginSuccess') {
+        }
+        if(urlParams.get('error') === 'deactivated') 
+        {
+          alert('Your account has been deactivated, please contact your administrator');
+        }
+      } 
+      else if(urlParams.has('success')) 
+      {
+        if(urlParams.get('success') === 'loginSuccess') 
+        {
           window.location.href = 'index.php';
         }
       }

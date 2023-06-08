@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
         editable: false,
         events: 'load.php',
         eventClick: function(info) {
-            document.querySelector(".event-heading").innerHTML = info.event.title;
+            document.querySelector(".event-heading").innerHTML = info.event.title + " : " + info.event.extendedProps.country;
             if (info.event.extendedProps.description === 'undefined')
             {
                 document.querySelector(".event-description").innerHTML = ''

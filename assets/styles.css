@@ -224,7 +224,7 @@ body
 .form-event-description
 {
     max-width: 100svw;
-    width: 50%;
+    width: 45%;
 }
 
 .event-update-button-submit
@@ -236,4 +236,31 @@ body
 .height-control
 {
     min-height: 75svh;
+}
+
+.input-container .btn.btn-primary
+{
+    margin-bottom: 0;
+}
+
+.input-container
+{
+    display: flex;
+    column-gap: 10px;
+}
+
+@media only screen and (max-width: 768px)
+{
+    .input-container
+    {
+        display: block;
+    }
+
+    .user-setting, .add-calendar-event
+    {
+        min-height: 65svh;
+        margin-left: 0%;
+        margin-right: 0;
+        width: 90%;
+    }
 }

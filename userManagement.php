@@ -20,7 +20,7 @@
 
             $page_map = array(
                 "accountCreate" => "accountCreate.php",
-                "batchUserCreate" => "batch_entry_create.php", //not created
+                "batchUserCreate" => "batch_entry_create.php",
                 "singleUserEdit" => "single_user_edit.php",
                 "batchUserDelete" => "batchUserDeleteContent.php", //not created
             );

@@ -8,9 +8,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $eventDate = $_POST["eventDate"];
     $eventRegion = $_POST["country"];
     $eventID = $_POST["eventID"];
+    $eventStatus = $_POST["event-status"];
 
-    $sql = "UPDATE event set event_name = '$eventName', description = '$eventDescription', date_start = '$eventDate',
-    region_id = $eventRegion where event_id = '$eventID'";
+    $urlStartDate = $_POST["eventStartDate"];
+    $urlEndDate = $_POST["eventEndDate"];
+    $urlRegion = $_POST["selectedRegion"];
+
+    $sql = "UPDATE event set event_name = '$eventName', description = '$eventDescription', date_start = '$eventDate', region_id = '$eventRegion', event_status = '$eventStatus' where event_id = '$eventID'";
 
     $sqlStatement = $conn->prepare($sql);
 
@@ -22,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['msg_type'] = "danger";
     }
     $conn->close();
-    header('Location: admin_panel.php?page=updateCalEvent');
+    header("Location: admin_panel.php?page=updateCalEvent&eventStartDate=$urlStartDate&eventEndDate=$urlEndDate&country=$urlRegion");
     exit();
 }
 
