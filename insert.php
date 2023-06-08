@@ -14,10 +14,11 @@
         $description = $_POST["eventDescription"];
         $date = $_POST["eventDate"];
         $country = $_POST["country"];
+        $currentUser = $_SESSION["user_id"];
 
         $countryID = $countryMap[$country];
-        $sql = "INSERT INTO event (event_name, date_start, description, region_id) 
-        VALUES ('$title', '$date', '$description', '$countryID')";
+        $sql = "INSERT INTO event (event_name, date_start, description, region_id, amended_by_ref) 
+        VALUES ('$title', '$date', '$description', '$countryID', $currentUser)";
 
         $sqlStatement = $conn->prepare($sql);
 

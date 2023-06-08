@@ -1,7 +1,6 @@
 <?php 
-    include 'check-access-rights.php';
-    
-    if($accessRights == '1')
+
+    if($isAdmin)
     {
 ?>
         <div class="container add-calendar-event col-md-6">
@@ -60,12 +59,6 @@
             }
         });
         </script>
-<?php
-    }
-    else
-    {
-?>
-        <div class="not-allowed">not allowed</div>
 <?php
     }
 ?>

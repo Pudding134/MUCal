@@ -1,8 +1,7 @@
 
 <?php 
-    include 'check-access-rights.php';
 
-    if($accessRights == '1')
+    if($isAdmin)
     {
        ?>
           <div class="container user-setting col-md-6">
@@ -28,11 +27,5 @@
             </form>
         </div>
        <?php
-    }
-    else
-    {
-        ?>
-        <div class="now-allowed">not allowed</div>
-        <?php
     }
 ?>

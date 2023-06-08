@@ -8,6 +8,8 @@
       unset($_SESSION['message']);
       unset($_SESSION['msg_type']);
   }
+if ($isAdmin)
+{
 ?>
 
 <div class="user-management-container" style="min-height: 64svh;">
@@ -37,4 +39,6 @@
     ?>
     </div>
 </div>
-<?php include 'footer.php'; ?>
+<?php
+} 
+include 'footer.php'; ?>

@@ -30,6 +30,10 @@ try {
     fclose($handle);
     $stmt->close();
     $conn->close();
+
+    $_SESSION['message'] = "Successfully added event details.";
+    $_SESSION['msg_type'] = "success";
+
     header('Location: admin_panel.php?page=addBulkCalEvent');// Redirect back to the upload page
     exit();
 

@@ -14,7 +14,14 @@ $user = $result->fetch_assoc();
 $isAccountDeactivated = $user['account_status'];
 $verifyPassword = password_verify($password, $user['user_password']);
 
-if ($isAccountDeactivated == 'active')
+if (!$isAccountDeactivated == 'active' && $verifyPassword)
+{
+    header("Location: login.php?error=deactivated");
+    $conn->close();
+    exit(); 
+    
+}
+else
 {
     if($user && $verifyPassword) {
         $_SESSION['user_name'] = $username;
@@ -28,12 +35,7 @@ if ($isAccountDeactivated == 'active')
         $conn->close();
         exit();
     }
-}
-else
-{
-    header("Location: login.php?error=deactivated");
-    $conn->close();
-    exit(); 
+
 }
 
 

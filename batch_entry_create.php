@@ -1,12 +1,19 @@
 <?php 
-  include 'check-access-rights.php';
+  
+  if (isset($_SESSION['message'])) {
+    $message = $_SESSION['message'];
+    $msg_type = $_SESSION['msg_type'];
+    echo "<div class='alert alert-{$msg_type}'>{$message}</div>";
+    unset($_SESSION['message']);
+    unset($_SESSION['msg_type']);
+  }
 ?>
 
 
 <?php 
     $currentUrl = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 
-    if($accessRights == '1' && (strpos($currentUrl, 'userManagement.php') !== false))
+    if($isAdmin && (strpos($currentUrl, 'userManagement.php') !== false))
     {
        ?>
         <div class="container user-setting col-md-6">
@@ -22,7 +29,7 @@
         </div>
 <?php
     }
-    elseif($accessRights == '1' && (strpos($currentUrl, 'admin_panel.php') !== false))
+    elseif($isAdmin && (strpos($currentUrl, 'admin_panel.php') !== false))
     {
         ?>
         <div class="container user-setting col-md-6">

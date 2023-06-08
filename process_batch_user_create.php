@@ -32,6 +32,9 @@ try {
     $stmt->close();
     $conn->close();
 
+    $_SESSION['message'] = "Successfully added user details.";
+    $_SESSION['msg_type'] = "success";
+
     header('Location: userManagement.php?page=batchUserCreate');// Redirect back to the upload page
     exit();
 

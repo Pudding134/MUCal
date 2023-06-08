@@ -28,7 +28,7 @@
             <div class="collapse navbar-collapse" id="nav">
                 <ul class="navbar-nav">
                     <?php
-                     if($accessRights == '1')
+                     if($isAdmin)
                      {
                         echo '<li class="nav-item"><a href="admin_panel.php" class="nav-link">Admin Panel</a></li>';
                         echo '<li class="nav-item"><a href="userManagement.php" class="nav-link">User Management</a></li>';

@@ -1,6 +1,5 @@
 <?php 
     include 'db_connection.php';
-    include 'check-access-rights.php';
 ?>
 
 
@@ -8,7 +7,7 @@
 
     $currentUrl = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 
-    if($accessRights == '1' && (strpos($currentUrl, 'userManagement.php') !== false))
+    if($isAdmin && (strpos($currentUrl, 'userManagement.php') !== false))
     {
        ?>
     <nav id="sidebarMenu" class="d-lg-block sidebar mt-1 ml-5">
@@ -33,7 +32,7 @@
 </nav>
     <?php
     }
-    elseif($accessRights == '1' && (strpos($currentUrl, 'admin_panel.php') !== false))
+    elseif($isAdmin && (strpos($currentUrl, 'admin_panel.php') !== false))
     {
         ?>
             <nav id="sidebarMenu" class="d-lg-block sidebar mt-1 ml-5">

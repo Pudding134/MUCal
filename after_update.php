@@ -9,12 +9,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $eventRegion = $_POST["country"];
     $eventID = $_POST["eventID"];
     $eventStatus = $_POST["event-status"];
+    $currentUser = $_SESSION["user_id"];
 
     $urlStartDate = $_POST["eventStartDate"];
     $urlEndDate = $_POST["eventEndDate"];
     $urlRegion = $_POST["selectedRegion"];
 
-    $sql = "UPDATE event set event_name = '$eventName', description = '$eventDescription', date_start = '$eventDate', region_id = '$eventRegion', event_status = '$eventStatus' where event_id = '$eventID'";
+    $sql = "UPDATE event set event_name = '$eventName', description = '$eventDescription', date_start = '$eventDate', region_id = '$eventRegion', event_status = '$eventStatus', amended_by_ref =  '$currentUser' where event_id = '$eventID'";
 
     $sqlStatement = $conn->prepare($sql);
 
