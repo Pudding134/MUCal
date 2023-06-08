@@ -9,7 +9,7 @@ try {
     $row = 0; // Initialize row counter
     while (($data = fgetcsv($handle)) !== FALSE) {
         $row++; // Increment row counter
-        if ($row === 1) { // Skip the first row
+        if ($row === 1) { // Skip the first row (user input headers)
             continue;
         }
         
