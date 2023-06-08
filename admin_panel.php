@@ -20,7 +20,8 @@
             $page_map = array(
                 "addCalEvent" => "addCalEvent.php",
                 "updateCalEvent" => "updateCalEvent.php",
-                "update" => "update.php"
+                "update" => "update.php",
+                "addBulkCalEvent" => "batch_entry_create.php"
             );
 
             if (array_key_exists($page, $page_map) && file_exists($page_map[$page])) {

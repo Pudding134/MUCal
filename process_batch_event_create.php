@@ -5,7 +5,7 @@ try {
     }
 
     $dbh = new mysqli('localhost', 'root', '', 'MUCal');
-    
+
     if ($dbh->connect_error) {
         throw new Exception("Connection failed: " . $dbh->connect_error);
     }
@@ -20,22 +20,20 @@ try {
             continue;
         }
 
-        $user_name = $data[0];
-        $user_password = password_hash($data[1], PASSWORD_DEFAULT); // Hash the password before storing
-        $user_email = $data[2];
-        $access_right_id = $data[3];
-        $account_status = $data[4];
+        $event_name = $data[0];
+        $date_start = $data[1];
+        $description = $data[2];
+        $region_id = $data[3];
 
-        $stmt = $dbh->prepare("INSERT INTO user (user_name, user_password, user_email, access_right_id, account_status) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssss", $user_name, $user_password, $user_email, $access_right_id, $account_status);
+        $stmt = $dbh->prepare("INSERT INTO event (event_name, date_start, description, region_id) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $event_name, $date_start, $description, $region_id);
         $stmt->execute();
     }
 
     fclose($handle);
     $stmt->close();
     $dbh->close();
-
-    header('Location: userManagement.php?page=batchUserCreate');// Redirect back to the upload page
+    header('Location: admin_panel.php?page=addBulkCalEvent');// Redirect back to the upload page
     exit();
 
 } catch (mysqli_sql_exception $e) {
