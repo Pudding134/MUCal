@@ -25,7 +25,7 @@
         if ($sqlStatement->execute()) {
             header("Location: after_insert.php");
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            echo "Error";
         }
         $conn->close();
     }
