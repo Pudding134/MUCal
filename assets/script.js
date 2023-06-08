@@ -48,10 +48,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     var calendar = new FullCalendar.Calendar(calendarEl, {
         timeZone: initialTimeZone,
-        initialView: 'dayGridMonth', //multiMonthYear
+        initialView: 'dayGridMonth',
         editable: false,
         events: 'load.php',
         eventClick: function(info) {
+            window.scrollTo(0, 160);
             document.querySelector(".event-heading").innerHTML = info.event.title + " : " + info.event.extendedProps.country;
             if (info.event.extendedProps.description === 'undefined')
             {
@@ -71,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         window.addEventListener('resize', function()
         {
+
             if (window.innerWidth < 768)
             {
             calendar.changeView('listMonth');    
