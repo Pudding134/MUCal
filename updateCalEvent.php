@@ -8,7 +8,7 @@
 
             <form action="admin_panel.php?page=update" method="post">
                 <h4 class="calendar-event-title">Filter</h4>
-                <div class="col-md-12" style="display: flex; column-gap: 15px;">
+                <div class="col-md-12" style="display: flex; column-gap: 15px; flex-wrap: wrap;">
                     <div class="form-group">
                         <label for="eventStartDate">Start Date</label>
                         <input type="date" class="form-control"  name="eventStartDate" id="eventStartDate" placeholder="YYYY-MM-DD" required >    

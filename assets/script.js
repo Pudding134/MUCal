@@ -75,11 +75,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (window.innerWidth < 768)
             {
-            calendar.changeView('listMonth');    
+                calendar.changeView('listMonth');    
             }
             else
             {
-            calendar.changeView('dayGridMonth');
+                calendar.changeView('dayGridMonth');
             }
         })
 
@@ -87,11 +87,12 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             if (window.innerWidth < 768)
             {
-            calendar.changeView('listMonth');    
+                calendar.changeView('listMonth');    
             }
             else
             {
-            calendar.changeView('dayGridMonth');
+                calendar.changeView('listMonth');
+                calendar.changeView('dayGridMonth');
             }
 
         }
