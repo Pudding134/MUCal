@@ -62,7 +62,12 @@ CREATE TABLE `region` (
   `region_id` char(2) NOT NULL,
   `region_name` varchar(50) NOT NULL,
   `color_code` varchar(7) NOT NULL,
-  PRIMARY KEY (`region_id`)
+  `region_status` enum('active','inactive') DEFAULT 'active',
+  `amended_by_ref` int DEFAULT NULL,
+  `region_amend_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`region_id`),
+  KEY `amended_by_ref` (`amended_by_ref`),
+  CONSTRAINT `region_ibfk_1` FOREIGN KEY (`amended_by_ref`) REFERENCES `user` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -72,7 +77,7 @@ CREATE TABLE `region` (
 
 LOCK TABLES `region` WRITE;
 /*!40000 ALTER TABLE `region` DISABLE KEYS */;
-INSERT INTO `region` VALUES ('AU','Australia','#65688f'),('DB','Dubai','#b56107'),('SG','Singapore','#3CB371');
+INSERT INTO `region` VALUES ('AU','Australia','#65688f','active',NULL,'2023-06-10 03:01:26'),('DB','Dubai','#b56107','active',NULL,'2023-06-10 03:01:26'),('SG','Singapore','#3CB371','active',NULL,'2023-06-10 03:01:26');
 /*!40000 ALTER TABLE `region` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -120,7 +125,12 @@ DROP TABLE IF EXISTS `user_right`;
 CREATE TABLE `user_right` (
   `access_right_id` int NOT NULL AUTO_INCREMENT,
   `access_name` varchar(50) NOT NULL,
-  PRIMARY KEY (`access_right_id`)
+  `user_right_status` enum('active','inactive') DEFAULT 'active',
+  `amended_by_ref` int DEFAULT NULL,
+  `user_right_amend_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`access_right_id`),
+  KEY `amended_by_ref` (`amended_by_ref`),
+  CONSTRAINT `user_right_ibfk_1` FOREIGN KEY (`amended_by_ref`) REFERENCES `user` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -130,7 +140,7 @@ CREATE TABLE `user_right` (
 
 LOCK TABLES `user_right` WRITE;
 /*!40000 ALTER TABLE `user_right` DISABLE KEYS */;
-INSERT INTO `user_right` VALUES (1,'Administrator'),(2,'Faculty'),(3,'Student');
+INSERT INTO `user_right` VALUES (1,'Administrator','active',NULL,'2023-06-10 03:01:29'),(2,'Faculty','active',NULL,'2023-06-10 03:01:29'),(3,'Student','active',NULL,'2023-06-10 03:01:29');
 /*!40000 ALTER TABLE `user_right` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -143,4 +153,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-07 13:36:44
+-- Dump completed on 2023-06-10 11:03:02
