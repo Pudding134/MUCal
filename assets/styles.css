@@ -5,8 +5,6 @@
     --secondary-color-cal: black;
     --list-calendar-hover-cal: #f8f8ff;
     --icon-switcher: url('moon.svg');
-    --fc-today-bg-color: rgba(255,220,40,0);
-    --murdoch-red: #E12744;
 }
 
 .dark-theme
@@ -249,10 +247,6 @@ body
 {
     display: flex;
     column-gap: 10px;
-}
-
-.fc .fc-daygrid-day.fc-day-today {
-    border: 5px solid var(--murdoch-red)
 }
 
 
