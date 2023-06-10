@@ -1,6 +1,6 @@
 <?php
-
-include 'db_connection.php';
+    session_start();
+    include 'db_connection.php';
 
 try {
     if ($_FILES['fileToUpload']['error'] > 0) { 
@@ -17,10 +17,19 @@ try {
             continue;
         }
 
+        // Validate and format the date
+        if (!is_numeric($data[1]) || strlen($data[1]) != 4 || 
+        !is_numeric($data[2]) || (strlen($data[2]) != 1 && strlen($data[2]) != 2) || 
+        !is_numeric($data[3]) || strlen($data[3]) != 2) {
+            throw new Exception("Invalid date format. Date should be in YYYY-MM-DD format.");
+        }
+        // If the month is a single digit, add a leading zero
+        $month = (strlen($data[2]) == 1) ? '0' . $data[2] : $data[2];
+
         $event_name = $data[0];
-        $date_start = $data[1];
-        $description = $data[2];
-        $region_id = $data[3];
+        $date_start = $data[1] . '-' . $data[2] . '-' . $data[3];
+        $description = $data[4];
+        $region_id = $data[5];
 
         $stmt = $conn->prepare("INSERT INTO event (event_name, date_start, description, region_id) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("ssss", $event_name, $date_start, $description, $region_id);

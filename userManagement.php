@@ -1,6 +1,5 @@
 <?php 
   include 'header.php'; 
-    // Add this here:
     if (isset($_SESSION['message'])) {
       $message = $_SESSION['message'];
       $msg_type = $_SESSION['msg_type'];
