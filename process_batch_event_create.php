@@ -30,9 +30,10 @@ try {
         $date_start = $data[1] . '-' . $data[2] . '-' . $data[3];
         $description = $data[4];
         $region_id = $data[5];
+        $currentUser = $_SESSION["user_id"];
 
-        $stmt = $conn->prepare("INSERT INTO event (event_name, date_start, description, region_id) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $event_name, $date_start, $description, $region_id);
+        $stmt = $conn->prepare("INSERT INTO event (event_name, date_start, description, region_id, amended_by_ref) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssi", $event_name, $date_start, $description, $region_id, $currentUser);
         $stmt->execute();
     }
 

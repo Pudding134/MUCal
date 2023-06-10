@@ -22,9 +22,10 @@ try {
         $user_email = $data[2];
         $access_right_id = $data[3];
         $account_status = $data[4];
+        $currentUser = $_SESSION["user_id"];
 
-        $stmt = $conn->prepare("INSERT INTO user (user_name, user_password, user_email, access_right_id, account_status) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssss", $user_name, $user_password, $user_email, $access_right_id, $account_status);
+        $stmt = $conn->prepare("INSERT INTO user (user_name, user_password, user_email, access_right_id, account_status, amended_by_ref) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssi", $user_name, $user_password, $user_email, $access_right_id, $account_status, $currentUser);
         $stmt->execute();
     }
 

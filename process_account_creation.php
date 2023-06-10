@@ -7,6 +7,7 @@
     $password = $_POST['password'];
     $email = $_POST['email'];
     $accessRight = $_POST['access-right'];
+    $currentUser = $_SESSION["user_id"];
 
     $accessRightsMap = [
         'admin' => 1,
@@ -30,12 +31,12 @@
 
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO user (user_name, user_password, user_email, access_right_id) 
-            VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO user (user_name, user_password, user_email, access_right_id, amended_by_ref) 
+            VALUES (?, ?, ?, ?, ?)";
 
     $sqlStatement = $conn->prepare($sql);
 
-    $sqlStatement->bind_param('sssi', $username, $hashedPassword, $email, $accessRightId);
+    $sqlStatement->bind_param('sssii', $username, $hashedPassword, $email, $accessRightId, $currentUser);
 
     if ($sqlStatement->execute()) {
         $_SESSION['message'] = "User successfully created.";

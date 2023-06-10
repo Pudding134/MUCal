@@ -12,21 +12,21 @@
     $sqlStatement->execute();
     $result = $sqlStatement->get_result();
     $user = $result->fetch_assoc();
-
+    $currentUser = $_SESSION["user_id"];
 
     if (password_verify($current_password, $user['user_password'])) {
 
         if (!empty($new_password)) {
             $new_password_hashed = password_hash($new_password, PASSWORD_DEFAULT);
-            $sql = "UPDATE user SET user_email = ?, user_password = ? WHERE user_name = ?";
+            $sql = "UPDATE user SET user_email = ?, user_password = ?, amended_by_ref = ? WHERE user_name = ?";
             $sqlStatement = $conn->prepare($sql);
-            $sqlStatement->bind_param('sss', $email, $new_password_hashed, $_SESSION['user_name']);
+            $sqlStatement->bind_param('ssis', $email, $new_password_hashed,$currentUser, $_SESSION['user_name']);
             $sqlStatement->execute();
         }
         else{
-            $sql = "UPDATE user SET user_email = ? WHERE user_name = ?";
+            $sql = "UPDATE user SET user_email = ?, amended_by_ref = ? WHERE user_name = ?";
             $sqlStatement = $conn->prepare($sql);
-            $sqlStatement->bind_param('ss', $email, $_SESSION['user_name']);
+            $sqlStatement->bind_param('sis', $email,$currentUser, $_SESSION['user_name']);
             $sqlStatement->execute();
         }
 
