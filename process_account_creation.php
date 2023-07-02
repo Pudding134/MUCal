@@ -24,7 +24,9 @@
     $result = $checkStmt->get_result();
 
     if ($result->num_rows > 0) {
-        header('Location: accountCreate.php?error=userexists');
+        $_SESSION['message'] = "User already exist.";
+        $_SESSION['msg_type'] = "danger";
+        header("Location: userManagement.php?page=accountCreate");
         exit;
     }
 
