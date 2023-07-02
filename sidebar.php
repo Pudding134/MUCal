@@ -13,20 +13,18 @@
     <nav id="sidebarMenu" class="d-lg-block sidebar mt-1 ml-5">
         <div class="position-sticky">
             <div class="list-group  mx-3 mb-3 ">
-            <a href="userManagement.php?page=accountCreate" 
+                <a href="userManagement.php?page=accountCreate" 
+                    class="list-group-item list-group-item-action py-2 ripple">
+                <span>Single User Creation</span>
+                </a>
+                <a href="userManagement.php?page=batchUserCreate"
+                    class="list-group-item list-group-item-action py-2 ripple">
+                    <span>Batch User Creation</span>
+                </a>
+                <a href="userManagement.php?page=singleUserEdit" 
                 class="list-group-item list-group-item-action py-2 ripple">
-               <span>Single User Creation</span>
-            </a>
-            <a href="userManagement.php?page=singleUserEdit" 
-            class="list-group-item list-group-item-action py-2 ripple">
-            <span>Single User Edit</span></a>
-            <a href="userManagement.php?page=batchUserCreate"
-                class="list-group-item list-group-item-action py-2 ripple">
-                <span>Batch User Creation</span></a>
-            <a href="userManagement.php?page=batchUserDelete" 
-                class="list-group-item list-group-item-action py-2 ripple">
-                <span>Batch User Delete</span>
-            </a>
+                <span>Single User Edit</span>
+                </a>
             </div>
         </div>
 </nav>
@@ -49,6 +47,14 @@
                         <a href="admin_panel.php?page=addBulkCalEvent" 
                             class="list-group-item list-group-item-action py-2 ripple">
                         <span>Batch Calendar Events</span>
+                        </a>
+                        <a href="admin_panel.php?page=addRegion" 
+                            class="list-group-item list-group-item-action py-2 ripple">
+                        <span>Add Region</span>
+                        </a>
+                        <a href="admin_panel.php?page=updateRegion" 
+                            class="list-group-item list-group-item-action py-2 ripple">
+                        <span>Update Region</span>
                         </a>
                     </div>
                 </div>

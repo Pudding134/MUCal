@@ -23,7 +23,7 @@ if ($isAdmin)
                 "accountCreate" => "accountCreate.php",
                 "batchUserCreate" => "batch_entry_create.php",
                 "singleUserEdit" => "single_user_edit.php",
-                "batchUserDelete" => "batchUserDeleteContent.php", //not created
+                // "batchUserDelete" => "batchUserDeleteContent.php", //not created
             );
 
             if (array_key_exists($page, $page_map) && file_exists($page_map[$page])) {

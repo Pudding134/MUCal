@@ -21,7 +21,9 @@
                 "addCalEvent" => "addCalEvent.php",
                 "updateCalEvent" => "updateCalEvent.php",
                 "update" => "update.php",
-                "addBulkCalEvent" => "batch_entry_create.php"
+                "addBulkCalEvent" => "batch_entry_create.php",
+                "addRegion" => "region_create.php",
+                "updateRegion" => "region_update.php"
             );
 
             if (array_key_exists($page, $page_map) && file_exists($page_map[$page])) {
