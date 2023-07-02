@@ -19,18 +19,18 @@
                 </div>
                 <br>
                 <div>
-                    <label for="region_name">Region Name:</label>
+                    <label for="region_name">Region Name</label>
                     <br>
                     <input type="text" class="form-control" id="region_name" name="region_name" placeholder="Region Full Name" required>
                 </div>
                 <br>
                 <div>
-                    <label for="color_code">Color Code:</label><br>
+                    <label for="color_code">Color</label><br>
                     <input type="color" class="form-control" id="color_code" name="color_code" placeholder="Color of region event" required>
                 </div>
                 <br>
                 <div>
-                    <label for="region_status">Status:</label>
+                    <label for="region_status">Status</label>
                     <br>
                     <select  class="form-control" id="region_status" name="region_status" required>
                         <option value="active">Active</option>

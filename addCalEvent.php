@@ -1,6 +1,6 @@
 <?php 
     
-    if($isAdmin)
+    if($isAdmin || $isFaculty)
     {
 ?>
         <div class="container add-calendar-event col-md-6">

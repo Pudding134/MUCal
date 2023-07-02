@@ -22,10 +22,12 @@ if (isset($_SESSION['user_name'])) {
     }
     
     $isAdmin = checkIfUserIsAdmin($accessRights);
+    $isFaculty = checkIfUserIsFaculty($accessRights);
 }
 else
 {
     $isAdmin = false;
+    $isFaculty = false;
 }
 
 
@@ -34,6 +36,18 @@ function checkIfUserIsAdmin($accessRightID)
     include 'db_connection.php';
 
     if(getAccessName($conn, $accessRightID) == "Administrator")
+    {
+        return true;
+    }
+    
+    return false;
+}
+
+function checkIfUserIsFaculty($accessRightID)
+{
+    include 'db_connection.php';
+
+    if(getAccessName($conn, $accessRightID) == "Faculty")
     {
         return true;
     }

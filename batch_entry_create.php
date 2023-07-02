@@ -29,7 +29,7 @@
         </div>
 <?php
     }
-    elseif($isAdmin && (strpos($currentUrl, 'admin_panel.php') !== false))
+    elseif(($isAdmin || $isFaculty) && (strpos($currentUrl, 'admin_panel.php') !== false))
     {
         ?>
         <div class="container user-setting col-md-6">

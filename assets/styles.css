@@ -249,6 +249,44 @@ body
     column-gap: 10px;
 }
 
+.filter
+{
+    margin-bottom: 30px;
+}
+.region-filter
+{
+    visibility: hidden;
+}
+
+.region-filter.active
+{
+    visibility: visible;
+}
+
+.region-list
+{
+    position: absolute;
+    background-color: var(--secondary-color-cal);
+    border-radius: 15px;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 10px;
+    padding: 10px 20px;
+}
+
+.region-item
+{
+    list-style-type: none;
+    color: var(--primary-color-cal);
+    padding: 5px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.region-item.inactive
+{
+    background-color: var(--secondary-color-cal) !important;
+}
 
 @media only screen and (max-width: 768px)
 {

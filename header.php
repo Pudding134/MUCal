@@ -28,11 +28,16 @@
             <div class="collapse navbar-collapse" id="nav">
                 <ul class="navbar-nav">
                     <?php
-                     if($isAdmin)
-                     {
-                        echo '<li class="nav-item"><a href="admin_panel.php" class="nav-link">Admin Panel</a></li>';
-                        echo '<li class="nav-item"><a href="userManagement.php" class="nav-link">User Management</a></li>';
-                     }
+                        if($isAdmin)
+                        {
+                            echo '<li class="nav-item"><a href="admin_panel.php" class="nav-link">Admin Panel</a></li>';
+                            echo '<li class="nav-item"><a href="userManagement.php" class="nav-link">User Management</a></li>';
+                        }
+                        else if($isFaculty)
+                        {
+                            echo '<li class="nav-item"><a href="admin_panel.php" class="nav-link">Admin Panel</a></li>';    
+                        }
+                        
                     ?>
                     <?php
                         if(isset($_SESSION['user_name'])) {

@@ -30,12 +30,13 @@
 </nav>
     <?php
     }
-    elseif($isAdmin && (strpos($currentUrl, 'admin_panel.php') !== false))
+    elseif(($isFaculty || $isAdmin) && (strpos($currentUrl, 'admin_panel.php') !== false))
     {
         ?>
             <nav id="sidebarMenu" class="d-lg-block sidebar mt-1 ml-5">
                 <div class="position-sticky">
                     <div class="list-group  mx-3 mb-3 ">
+
                         <a href="admin_panel.php?page=addCalEvent" 
                             class="list-group-item list-group-item-action py-2 ripple">
                         <span>Add Calendar Event</span>
@@ -48,14 +49,21 @@
                             class="list-group-item list-group-item-action py-2 ripple">
                         <span>Batch Calendar Events</span>
                         </a>
-                        <a href="admin_panel.php?page=addRegion" 
-                            class="list-group-item list-group-item-action py-2 ripple">
-                        <span>Add Region</span>
-                        </a>
-                        <a href="admin_panel.php?page=updateRegion" 
-                            class="list-group-item list-group-item-action py-2 ripple">
-                        <span>Update Region</span>
-                        </a>
+                        <?php if($isAdmin)
+                        {
+                            ?>
+                            <a href="admin_panel.php?page=addRegion" 
+                                class="list-group-item list-group-item-action py-2 ripple">
+                            <span>Add Region</span>
+                            </a>
+                            <a href="admin_panel.php?page=updateRegion" 
+                                class="list-group-item list-group-item-action py-2 ripple">
+                            <span>Update Region</span>
+                            </a>
+                            <?php
+                        }
+                        
+                        ?>
                     </div>
                 </div>
             </nav>

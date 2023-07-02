@@ -1,9 +1,29 @@
 <?php 
 include 'db_connection.php';
 
-$sql = "SELECT event_id, event_name, description, date_start, region_id FROM event where event_status = 'active'";
+if(isset($_GET['param']))
+{
+    $string = $_GET['param'];
+    $string = trim($string);
+    $array = json_decode($string);
+
+    $addSingleQuotesToEachString = array_map(function($value) {
+        return "'" . $value . "'";
+    }, $array);
+
+    $commaSeparatedValues = implode(',', $addSingleQuotesToEachString);
+
+    $sql = "SELECT event_id, event_name, description, date_start, region_id FROM event where event_status = 'active' and region_id in (SELECT region_id from region where region_name IN ({$commaSeparatedValues}))";
+}
+else
+{
+    $sql = "SELECT event_id, event_name, description, date_start, region_id FROM event where event_status = 'active'";
+}
+
+
 $result = $conn->query($sql);
 $events = array();
+
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
@@ -27,7 +47,7 @@ if ($result->num_rows > 0) {
             'color' => $colorCode,
             'extendedProps' => array(
                 'description' => $row['description'],
-                'country' => $regionName,
+                'country' => $regionName
             )
         );
     }

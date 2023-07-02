@@ -67,33 +67,121 @@ document.addEventListener('DOMContentLoaded', function() {
         
         });
         
-        calendar.render();
-        calendar.setOption('timeZone', 'local');
-        
-        window.addEventListener('resize', function()
+    calendar.render();
+    calendar.setOption('timeZone', 'local');
+    
+    window.addEventListener('resize', function()
+    {
+
+        if (window.innerWidth < 768)
         {
-
-            if (window.innerWidth < 768)
-            {
-                calendar.changeView('listMonth');    
-            }
-            else
-            {
-                calendar.changeView('dayGridMonth');
-            }
-        })
-
-        window.onload = function()
-        {
-            if (window.innerWidth < 768)
-            {
-                calendar.changeView('listMonth');    
-            }
-            else
-            {
-                calendar.changeView('listMonth');
-                calendar.changeView('dayGridMonth');
-            }
-
+            calendar.changeView('listMonth');    
         }
+        else
+        {
+            calendar.changeView('dayGridMonth');
+        }
+    })
+
+    window.onload = function()
+    {
+        if (window.innerWidth < 768)
+        {
+            calendar.changeView('listMonth');    
+        }
+        else
+        {
+            calendar.changeView('listMonth');
+            calendar.changeView('dayGridMonth');
+        }
+
+    }
+
+    var regionTitle = document.querySelector('.region-title');
+    var regionFilter = document.querySelector('.region-filter');
+    var selectedRegions = document.querySelector('.selected-regions');
+
+    regionTitle.addEventListener('click', function()
+    {
+        regionFilter.classList.toggle('active');
+        if (regionFilter.classList.contains("active"))
+        {
+            regionTitle.innerHTML = "Filter &#9650"
+        }
+        else
+        {
+            regionTitle.innerHTML = "Filter &#9660";
+        }
+    });
+    
+    var regionItem = document.querySelectorAll('.region-item');
+
+    regionItem.forEach(item => {
+        item.addEventListener('click', () => {
+            item.classList.toggle('active');
+            selectedRegions.innerHTML = "";
+            var activeRegions = [];
+            
+            regionItem.forEach(i => {
+                if (i.classList.contains('active'))
+                {
+                    selectedRegions.innerHTML +=  i.innerHTML + " ";
+                    activeRegions.push(i.innerHTML);
+                    
+                }
+            });
+            
+            var jsonArray = JSON.stringify(activeRegions);
+            var url = 'load.php';
+            
+            if (activeRegions.length === 0) {
+                url = 'load.php'
+            } else {
+                url += '?param='+jsonArray;
+            }
+            
+            console.log(url);
+            reRenderCalendar(url);
+
+        });
+    });
+
+    function reRenderCalendar(url)
+    {
+        var initialTimeZone = 'UTC';
+        var calendarEl = document.getElementById('calendar');
+        
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            timeZone: initialTimeZone,
+            initialView: 'dayGridMonth',
+            editable: false,
+            events: url,
+            eventClick: function(info) {
+                window.scrollTo(0, 160);
+                document.querySelector(".event-heading").innerHTML = info.event.title + " : " + info.event.extendedProps.country;
+                if (info.event.extendedProps.description === 'undefined')
+                {
+                    document.querySelector(".event-description").innerHTML = ''
+                }
+                else
+                {
+                    document.querySelector(".event-description").innerHTML = info.event.extendedProps.description;
+                }
+                document.querySelector(".expanded-view").style.border = '1px solid var(--secondary-color-cal)'
+            }
+            
+        });
+            
+        calendar.render();
+        if (window.innerWidth < 768)
+        {
+            calendar.changeView('listMonth');    
+        }
+        else
+        {
+            calendar.changeView('listMonth');
+            calendar.changeView('dayGridMonth');
+        }
+        calendar.setOption('timeZone', 'local');
+    }
 });
