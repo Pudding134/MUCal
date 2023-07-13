@@ -72,9 +72,8 @@ document.addEventListener('DOMContentLoaded', function() {
     calendar.render();
     currentCalendar = calendar;
 
-    calendar.setOption('timeZone', 'local');
-    
-    
+    windowResize(currentCalendar);
+    calendar.setOption('timeZone', 'local'); 
 
     var regionTitle = document.querySelector('.region-title');
     var regionFilter = document.querySelector('.region-filter');
@@ -128,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function reRenderCalendar(url, dateUserWasIn)
     {
-        
+        currentCalendar.destroy();
         var initialTimeZone = 'UTC';
         var calendarEl = document.getElementById('calendar');
         
@@ -138,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
             editable: false,
             events: url,
             eventClick: function(info) {
-                window.scrollTo(0, 160);
+                window.scrollTo(0, 180);
                 document.querySelector(".event-heading").innerHTML = info.event.title + " : " + info.event.extendedProps.country;
                 if (info.event.extendedProps.description === 'undefined')
                 {
