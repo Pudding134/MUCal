@@ -1,4 +1,6 @@
 let darkMode = localStorage.getItem('darkMode');
+var currentCalendar = '';
+
 
 const darkModeToggle = document.querySelector('.theme-toggle');
 const enableDarkMode = () => {
@@ -64,10 +66,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             document.querySelector(".expanded-view").style.border = '1px solid var(--secondary-color-cal)'
         }
-        
-        });
+
+    });
         
     calendar.render();
+    currentCalendar = calendar;
+
     calendar.setOption('timeZone', 'local');
     
     window.addEventListener('resize', function()
@@ -140,14 +144,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 url += '?param='+jsonArray;
             }
             
-            console.log(url);
-            reRenderCalendar(url);
+            var dateUserWasIn = currentCalendar.getDate();
+            console.log(dateUserWasIn);
+            reRenderCalendar(url, dateUserWasIn);
 
         });
     });
 
-    function reRenderCalendar(url)
+    function reRenderCalendar(url, dateUserWasIn)
     {
+        currentCalendar.destroy();
         var initialTimeZone = 'UTC';
         var calendarEl = document.getElementById('calendar');
         
@@ -173,6 +179,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
             
         calendar.render();
+
+        
         if (window.innerWidth < 768)
         {
             calendar.changeView('listMonth');    
@@ -183,5 +191,8 @@ document.addEventListener('DOMContentLoaded', function() {
             calendar.changeView('dayGridMonth');
         }
         calendar.setOption('timeZone', 'local');
+        calendar.gotoDate(dateUserWasIn);
+        
+        currentCalendar = calendar;
     }
 });
