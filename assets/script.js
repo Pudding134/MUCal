@@ -74,32 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     calendar.setOption('timeZone', 'local');
     
-    window.addEventListener('resize', function()
-    {
-
-        if (window.innerWidth < 768)
-        {
-            calendar.changeView('listMonth');    
-        }
-        else
-        {
-            calendar.changeView('dayGridMonth');
-        }
-    })
-
-    window.onload = function()
-    {
-        if (window.innerWidth < 768)
-        {
-            calendar.changeView('listMonth');    
-        }
-        else
-        {
-            calendar.changeView('listMonth');
-            calendar.changeView('dayGridMonth');
-        }
-
-    }
+    
 
     var regionTitle = document.querySelector('.region-title');
     var regionFilter = document.querySelector('.region-filter');
@@ -153,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function reRenderCalendar(url, dateUserWasIn)
     {
-        currentCalendar.destroy();
+        
         var initialTimeZone = 'UTC';
         var calendarEl = document.getElementById('calendar');
         
@@ -194,5 +169,36 @@ document.addEventListener('DOMContentLoaded', function() {
         calendar.gotoDate(dateUserWasIn);
         
         currentCalendar = calendar;
+        windowResize(currentCalendar);
     }
 });
+
+function windowResize(calendar)
+{
+    window.addEventListener('resize', function()
+    {
+
+        if (window.innerWidth < 768)
+        {
+            calendar.changeView('listMonth');    
+        }
+        else
+        {
+            calendar.changeView('dayGridMonth');
+        }
+    })
+
+    window.onload = function()
+    {
+        if (window.innerWidth < 768)
+        {
+            calendar.changeView('listMonth');    
+        }
+        else
+        {
+            calendar.changeView('listMonth');
+            calendar.changeView('dayGridMonth');
+        }
+
+    }
+}
