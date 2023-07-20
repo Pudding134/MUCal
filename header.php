@@ -52,7 +52,6 @@
         </div>
     </nav>
     <div class="container theme-switcher">
-
         <button class="theme-toggle mb-3 mb-m-0">
             Switch Theme
             <i class="button-svg"></i>
