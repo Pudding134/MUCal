@@ -40,21 +40,6 @@
                 <button type="submit" class="btn btn-primary" id="update-submit" value="Submit">Find</button>
             </form>
         </div>
-
-        <?php
-            if (isset($_POST['eventStartDate']) && isset($_POST['eventEndDate']) && isset($_POST['country'])) {
-                $startDate = $_POST['eventStartDate'];
-                $endDate = $_POST['eventEndDate'];
-                $country = $_POST['country'];
-
-                if (empty($_POST['eventTitle'])) {
-                    header("Location: admin_panel.php?page=updateCalEvent&eventStartDate=" . urlencode($startDate) . "&eventEndDate=" . urlencode($endDate) . "&country=" . urlencode($country) . "&message=emptyTitle&messageType=" . urlencode($messageType));
-                    exit();
-                }
-        ?>
-
-
-
         <script>
             window.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
