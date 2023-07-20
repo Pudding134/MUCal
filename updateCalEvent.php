@@ -20,10 +20,12 @@
                     <div class="form-group">
                         <label for="country">Country</label>
                         <select class="form-control" id="country" name="country" required>
-                            <option>All</option>
-                            <option>AU</option>
-                            <option>SG</option>
-                            <option>DB</option>
+                        <?php
+                            $regions = $conn->query("SELECT region_id FROM region");
+                            while ($row = $regions->fetch_assoc()) {
+                                echo '<option value="'.$row['region_id'].'">'.$row['region_id'].'</option>';
+                            }
+                        ?>
                         </select>
                     </div>
                     <div class="form-group" style="display: none;">
