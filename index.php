@@ -8,7 +8,6 @@
         <div class="region-filter">
             <ul class="region-list">
                 <?php
-                    $todayDate = date('Y-m-d');
                     $regions = $conn->query("SELECT region_name, color_code,region_status FROM region");
 
                     while ($row = $regions->fetch_assoc()) {
@@ -16,9 +15,9 @@
                         {
                             echo '<li class="region-item inactive" style="border: 2px solid '.$row['color_code'].'">'.$row['region_name'].'</li>';
                         }
-                        else if(isRegionOlderThanAYear($row['region_name'], $conn, $row['color_code'], $row['region_name']))
+                        else
                         {
-
+                            isRegionOlderThanAYear($row['region_name'], $conn, $row['color_code'], $row['region_name']);
                         }
                     }
                     function isRegionOlderThanAYear($region_name, $conn, $colorCode, $regionName)
@@ -46,7 +45,6 @@
                 ?> 
             </ul>
         </div>
-    </div>
         <div id='calendar'></div>
         <div class="expanded-view">
             <div class="expanded-details">
