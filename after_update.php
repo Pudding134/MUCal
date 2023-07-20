@@ -21,6 +21,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: admin_panel.php?page=updateCalEvent&eventStartDate=$urlStartDate&eventEndDate=$urlEndDate&country=$urlRegion&message=$message&messageType=$msgType");
         exit();
     }
+    if(empty($eventDate)){
+        $message = "Event date cannot be empty.";
+        $msgType = "danger";
+        header("Location: admin_panel.php?page=updateCalEvent&eventStartDate=$urlStartDate&eventEndDate=$urlEndDate&country=$urlRegion&message=$message&messageType=$msgType");
+        exit();
+    }
 
     $sql = "UPDATE event set event_name = '$eventName', description = '$eventDescription', date_start = '$eventDate', region_id = '$eventRegion', event_status = '$eventStatus', amended_by_ref =  '$currentUser' where event_id = '$eventID'";
 
