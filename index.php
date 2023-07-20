@@ -8,9 +8,40 @@
         <div class="region-filter">
             <ul class="region-list">
                 <?php
-                    $regions = $conn->query("SELECT region_name, color_code FROM region");
+                    $todayDate = date('Y-m-d');
+                    $regions = $conn->query("SELECT region_name, color_code,region_status FROM region");
+
                     while ($row = $regions->fetch_assoc()) {
-                        echo '<li class="region-item inactive" style="border: 2px solid '.$row['color_code'].'">'.$row['region_name'].'</li>';
+                        if ($row['region_status'] != 'inactive')
+                        {
+                            echo '<li class="region-item inactive" style="border: 2px solid '.$row['color_code'].'">'.$row['region_name'].'</li>';
+                        }
+                        else if(isRegionOlderThanAYear($row['region_name'], $conn, $row['color_code'], $row['region_name']))
+                        {
+
+                        }
+                    }
+                    function isRegionOlderThanAYear($region_name, $conn, $colorCode, $regionName)
+                    {
+                        $regions = $conn->query("SELECT region_id FROM region WHERE region_name = '".$region_name."'");
+                        $regionID ='';
+                        while($row = $regions->fetch_assoc())
+                        {
+                            $regionID = $row['region_id']; 
+                        }
+
+                        $checkAge = $conn->query("SELECT curdate()-date_start as diff FROM event WHERE region_id = '".$region_name."' AND event_status !='inactive' ORDER BY date_start DESC LIMIT 1");
+                        $age = '';
+                        while($row = $checkAge->fetch_assoc())
+                        {
+                            $age = $row['diff']; 
+                        }
+
+                        if ($age <365 && $age !='' )
+                        {
+                            echo '<li class="region-item inactive" style="border: 2px solid '.$colorCode.'">'.$regionName.'</li>';
+                        }
+
                     }
                 ?> 
             </ul>
