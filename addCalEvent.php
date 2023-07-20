@@ -17,9 +17,13 @@
             <br>
                 <label for="country">Country</label>
                     <select class="form-control" id="country" name="country" required>
-                        <option>Australia</option>
-                        <option>Singapore</option>
-                        <option>Dubai</option>
+                        <option value="">--Select Region--</option>
+                        <?php
+                            $regions = $conn->query("SELECT region_id FROM region WHERE region_status = 'active'");
+                            while ($row = $regions->fetch_assoc()) {
+                                echo '<option value="'.$row['region_id'].'">'.$row['region_id'].'</option>';
+                            }
+                        ?>
                     </select>
             <br>
                 <button type="submit" class="btn btn-primary" id="eventSubmitButton" value="Submit">Submit</button>
