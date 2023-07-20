@@ -1,4 +1,6 @@
 let darkMode = localStorage.getItem('darkMode');
+var currentCalendar = '';
+
 
 const darkModeToggle = document.querySelector('.theme-toggle');
 const enableDarkMode = () => {
@@ -64,38 +66,14 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             document.querySelector(".expanded-view").style.border = '1px solid var(--secondary-color-cal)'
         }
-        
-        });
+
+    });
         
     calendar.render();
-    calendar.setOption('timeZone', 'local');
-    
-    window.addEventListener('resize', function()
-    {
+    currentCalendar = calendar;
 
-        if (window.innerWidth < 768)
-        {
-            calendar.changeView('listMonth');    
-        }
-        else
-        {
-            calendar.changeView('dayGridMonth');
-        }
-    })
-
-    window.onload = function()
-    {
-        if (window.innerWidth < 768)
-        {
-            calendar.changeView('listMonth');    
-        }
-        else
-        {
-            calendar.changeView('listMonth');
-            calendar.changeView('dayGridMonth');
-        }
-
-    }
+    windowResize(currentCalendar);
+    calendar.setOption('timeZone', 'local'); 
 
     var regionTitle = document.querySelector('.region-title');
     var regionFilter = document.querySelector('.region-filter');
@@ -140,14 +118,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 url += '?param='+jsonArray;
             }
             
-            console.log(url);
-            reRenderCalendar(url);
+            var dateUserWasIn = currentCalendar.getDate();
+            console.log(dateUserWasIn);
+            reRenderCalendar(url, dateUserWasIn);
 
         });
     });
 
-    function reRenderCalendar(url)
+    function reRenderCalendar(url, dateUserWasIn)
     {
+        currentCalendar.destroy();
         var initialTimeZone = 'UTC';
         var calendarEl = document.getElementById('calendar');
         
@@ -157,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
             editable: false,
             events: url,
             eventClick: function(info) {
-                window.scrollTo(0, 160);
+                window.scrollTo(0, 180);
                 document.querySelector(".event-heading").innerHTML = info.event.title + " : " + info.event.extendedProps.country;
                 if (info.event.extendedProps.description === 'undefined')
                 {
@@ -173,6 +153,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
             
         calendar.render();
+
+        
         if (window.innerWidth < 768)
         {
             calendar.changeView('listMonth');    
@@ -183,5 +165,39 @@ document.addEventListener('DOMContentLoaded', function() {
             calendar.changeView('dayGridMonth');
         }
         calendar.setOption('timeZone', 'local');
+        calendar.gotoDate(dateUserWasIn);
+        
+        currentCalendar = calendar;
+        windowResize(currentCalendar);
     }
 });
+
+function windowResize(calendar)
+{
+    window.addEventListener('resize', function()
+    {
+
+        if (window.innerWidth < 768)
+        {
+            calendar.changeView('listMonth');    
+        }
+        else
+        {
+            calendar.changeView('dayGridMonth');
+        }
+    })
+
+    window.onload = function()
+    {
+        if (window.innerWidth < 768)
+        {
+            calendar.changeView('listMonth');    
+        }
+        else
+        {
+            calendar.changeView('listMonth');
+            calendar.changeView('dayGridMonth');
+        }
+
+    }
+}
