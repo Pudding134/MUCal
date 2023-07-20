@@ -30,10 +30,12 @@
             $sqlStatement->execute();
         }
 
-        if($sqlStatement->affected_rows === 0) {
-            $_SESSION['message'] = "There was an error updating user setting.";
-            $_SESSION['msg_type'] = "danger";
-        } else {
+        if($sqlStatement->affected_rows == 0) {
+            $_SESSION['message'] = "No Changes were made";
+            $_SESSION['msg_type'] = "warning";
+        }
+        else 
+        {
             $_SESSION['message'] = "User Setting Updated.";
             $_SESSION['msg_type'] = "success";
         }

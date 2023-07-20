@@ -5,7 +5,7 @@
 ?>
         <div class="container add-calendar-event col-md-6">
             <h1 class="calendar-event-title">Add a calendar event</h1>  
-            <form action="insert.php" method="post" onsubmit="disableSubmitButton()">
+            <form action="insert.php" method="post">
                 <label for="eventTitle">Event Title</label>
                 <input type="text" class="form-control" name="eventTitle" id="eventTitle" placeholder="Enter event title" required>
             <br>
@@ -31,9 +31,13 @@
         </div>
 
     <script>
-        function disableSubmitButton(){
-            document.getElementById("eventSubmitButton").disabled = true;
-        }
+        var addEventSubmit = document.querySelector('.add-calendar-event #eventSubmitButton');
+        var form = document.querySelector('.add-calendar-event form')
+        form.addEventListener('submit', () => 
+        {
+            addEventSubmit.disabled = true;
+        })
+
     </script>
 
     

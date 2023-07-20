@@ -2,12 +2,6 @@
     session_start();
     include 'db_connection.php';
 
-    $countryMap = [
-        'Australia' => 'AU',
-        'Singapore' => 'SG',
-        'Dubai' => 'DB'
-    ];
-
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -16,10 +10,8 @@
         $date = $_POST["eventDate"];
         $country = $_POST["country"];
         $currentUser = $_SESSION["user_id"];
-
-        $countryID = $countryMap[$country];
         $sql = "INSERT INTO event (event_name, date_start, description, region_id, amended_by_ref) 
-        VALUES ('$title', '$date', '$description', '$countryID', $currentUser)";
+        VALUES ('$title', '$date', '$description', '$country', $currentUser)";
 
         $sqlStatement = $conn->prepare($sql);
 

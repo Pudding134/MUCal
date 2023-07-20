@@ -29,3 +29,14 @@
        <?php
     }
 ?>
+
+
+<script>
+        var addEventSubmit = document.querySelector('.user-setting .btn');
+        var form = document.querySelector('.user-setting form')
+        form.addEventListener('submit', () => 
+        {
+            addEventSubmit.disabled = true;
+        })
+
+</script>
