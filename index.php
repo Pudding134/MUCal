@@ -29,7 +29,7 @@
                             $regionID = $row['region_id']; 
                         }
 
-                        $checkAge = $conn->query("SELECT curdate()-date_start as diff FROM event WHERE region_id = '".$regionID."' AND event_status !='inactive' ORDER BY date_start DESC LIMIT 1");
+                        $checkAge = $conn->query("SELECT DATEDIFF(curdate(), date_start) as diff FROM event WHERE region_id = '".$regionID."' AND event_status !='inactive' ORDER BY date_start DESC LIMIT 1");
                         $age = '';
                         while($row = $checkAge->fetch_assoc())
                         {
