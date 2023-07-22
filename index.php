@@ -17,10 +17,10 @@
                         }
                         else
                         {
-                            isRegionOlderThanAYear($row['region_name'], $conn, $row['color_code'], $row['region_name']);
+                            isRegionOlderThanAYear($row['region_name'], $conn, $row['color_code']);
                         }
                     }
-                    function isRegionOlderThanAYear($region_name, $conn, $colorCode, $regionName)
+                    function isRegionOlderThanAYear($region_name, $conn, $colorCode)
                     {
                         $regions = $conn->query("SELECT region_id FROM region WHERE region_name = '".$region_name."'");
                         $regionID ='';
@@ -38,7 +38,7 @@
 
                         if ($age <365 && $age !='' )
                         {
-                            echo '<li class="region-item inactive" style="border: 2px solid '.$colorCode.'">'.$regionName.'</li>';
+                            echo '<li class="region-item inactive" style="border: 2px solid '.$colorCode.'">'.$region_name.'</li>';
                         }
 
                     }
