@@ -9,7 +9,7 @@
                 Murdoch University
             </h6>
             <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat fugiat enim voluptatibus vero possimus, ipsum rerum alias quos id molestiae, sit error minus cum iure consectetur natus quisquam, distinctio praesentium.
+            We acknowledge that Murdoch University is situated on the lands of the Whadjuk and Binjareb Noongar people. We pay our respects to their enduring and dynamic culture and the leadership of Noongar elders past and present.
             </p>
         </div>
         <div class="col-md-2 col-lg-2 col-xl-2 mb-4">
@@ -23,7 +23,7 @@
                 <a href="https://www.murdoch.edu.au/" class="text-reset">Murdoch Homepage</a>
             </p>
             <p>
-                <a href="#" class="text-reset">About</a>
+                <a href="./about.php" class="text-reset">About</a>
             </p>
         </div>
       </div>
