@@ -17,9 +17,7 @@
     }
     .container .about
     {
-        display: flex;
         column-gap: 20px;
-        align-items: flex-end;
         margin-bottom: 25px;
     }
 
@@ -40,18 +38,21 @@
         opacity: 1;
     }
 
-
-    .container .about .intro >h3
+    .container .about .intro .points
     {
-        text-align: center;
-    }
-
-    @media only screen and (max-width: 768px)
+        display: flex;
+        align-items: center;
+    }    
+    @media only screen and (max-width: 1024px)
     {
         .container.about-us
         {
             display: grid;
             grid-template-columns: 1fr;
+        }
+        .container .about .intro .points ul li
+        {
+            font-size: 14px;
         }
     }
 </style>
@@ -65,83 +66,96 @@
     <div class="about">
         <div class="intro">
             <h3>Bernard</h3>
-            <img src="./assets/about/Bernard.png" alt="Bernard">
+            <div class="points">
+                <img src="./assets/about/Bernard.png" alt="Bernard">
+                <ul>
+                    <li>Risk Management</li>
+                    <li>Procurement Management</li>
+                    <li>Infrastructure Design</li>
+                    <li>Promo Video</li>
+                </ul>
+            </div>
         </div>
-        <ul>
-            <li>Risk Management</li>
-            <li>Procurement Management</li>
-            <li>Infrastructure Design</li>
-            <li>Promo Video</li>
-        </ul>
     </div>
 
     <div class="about">
         <div class="intro">
             <h3>Jasmine</h3>
-            <img src="./assets/about/Jasmine.png" alt="Jasmine">
+            <div class="points">
+                <img src="./assets/about/Jasmine.png" alt="Jasmine">
+                <ul>
+                    <li>Project Scope Management</li>
+                    <li>Project Time Management</li>
+                    <li>Project Cost Management</li>
+                    <li>Use Case List</li>
+                    <li>Test Case</li>
+                </ul>
+            </div>
         </div>
-        <ul>
-            <li>Project Scope Management</li>
-            <li>Project Time Management</li>
-            <li>Project Cost Management</li>
-            <li>Use Case List</li>
-            <li>Test Case</li>
-        </ul>
     </div>
 
     <div class="about">
         <div class="intro">
             <h3>Sreehari</h3>
-            <img src="./assets/about/Sreehari.png" alt="Sreehari">
+            <div class="points">
+                <img src="./assets/about/Sreehari.png" alt="Sreehari">
+                <ul>
+                    <li>Project Integration Management</li>
+                    <li>Project Quality Management</li>
+                    <li>Interface Design</li>
+                    <li>Test Case</li>
+                </ul>
+            </div>
         </div>
-        <ul>
-            <li>Project Integration Management</li>
-            <li>Project Quality Management</li>
-            <li>Interface Design</li>
-            <li>Test Case</li>
-        </ul>
     </div>
 
     <div class="about">
         <div class="intro">
             <h3>Tharuka</h3>
-            <img src="./assets/about/Tharuka.png" alt="Tharuka">
+            <div class="points">
+                <img src="./assets/about/Tharuka.png" alt="Tharuka">
+                <ul>
+                    <li>Software Design</li>
+                    <li>Software Developer</li>
+                    <li>Requirement Analysis</li>
+                    <li>Installation Guide</li>
+                    <li>Test Case List</li>
+                </ul>
+            </div>
         </div>
-        <ul>
-            <li>Software Design</li>
-            <li>Software Developer</li>
-            <li>Requirement Analysis</li>
-            <li>Installation Guide</li>
-            <li>Test Case List</li>
-        </ul>
+       
     </div>
 
     <div class="about">
         <div class="intro">
             <h3>Willie</h3>
-            <img src="./assets/about/Willie.png" alt="Willie">
+            <div class="points">
+                <img src="./assets/about/Willie.png" alt="Willie">
+                <ul>
+                    <li>Software Design</li>
+                    <li>Software Developer</li>
+                    <li>Requirement Analysis</li>
+                    <li>Data Design</li>
+                    <li>User Case List</li>
+                </ul>
+            </div>
         </div>
-        <ul>
-            <li>Software Design</li>
-            <li>Software Developer</li>
-            <li>Requirement Analysis</li>
-            <li>Data Design</li>
-            <li>User Case List</li>
-        </ul>
     </div>
 
     <div class="about">
         <div class="intro">
             <h3>ZhenLong</h3>
-            <img src="./assets/about/ZhenLong.png" alt="ZhenLong">
+            <div class="points">
+                <img src="./assets/about/ZhenLong.png" alt="ZhenLong">
+                <ul>
+                    <li>Diagram Representation</li>
+                    <li>Project Communication Management</li>
+                    <li>Project Human Resource Management</li>
+                    <li>Data Design</li>
+                    <li>Promo Video</li>
+                </ul>
+            </div>
         </div>
-        <ul>
-            <li>Diagram Representation</li>
-            <li>Project Communication Management</li>
-            <li>Project Human Resource Management</li>
-            <li>Data Design</li>
-            <li>Promo Video</li>
-        </ul>
     </div>
 </div>
 
