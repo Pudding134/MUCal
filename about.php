@@ -49,6 +49,7 @@
         {
             display: grid;
             grid-template-columns: 1fr;
+            border: 0px;
         }
         .container .about .intro .points ul li
         {
